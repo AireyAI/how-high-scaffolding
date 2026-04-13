@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Completed Projects | How High Scaffolding | Carlisle, UK</title>
+    <meta name="description" content="Browse 60+ completed scaffolding projects by How High Scaffolding. Residential, commercial, safety netting, and shrink wrapping across the UK.">
+    <meta property="og:title" content="Completed Projects | How High Scaffolding">
+    <meta property="og:description" content="Browse 60+ completed scaffolding projects across the UK.">
+    <meta property="og:image" content="images/projects/photo_10.jpg">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://howhighscaffolding.co.uk/projects">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#0A0A0A',
+                        surface: '#141414',
+                        elevated: '#1A1A1A',
+                        primary: '#E87A1E',
+                        'primary-hover': '#FF9642',
+                        'text-secondary': '#A0A0A0',
+                        footer: '#080808',
+                    },
+                    fontFamily: {
+                        display: ['"Bebas Neue"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .grain::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #E87A1E;
+            outline-offset: 2px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E87A1E; }
+
+        /* Lightbox */
+        #lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            padding: 2rem;
+        }
+        #lightbox.active { display: flex; }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* Lightbox nav arrows */
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(232, 122, 30, 0.8);
+            border: none;
+            color: #0A0A0A;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: background 0.2s;
+        }
+        .lightbox-nav:hover { background: rgba(255, 150, 66, 1); }
+        .lightbox-prev { left: 1rem; }
+        .lightbox-next { right: 1rem; }
+
+        /* Counter */
+        .lightbox-counter {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #A0A0A0;
+            font-size: 0.875rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* Masonry columns */
+        .masonry {
+            columns: 1;
+            column-gap: 1rem;
+        }
+        @media (min-width: 640px) { .masonry { columns: 2; } }
+        @media (min-width: 1024px) { .masonry { columns: 3; } }
+        @media (min-width: 1280px) { .masonry { columns: 4; } }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="grain">
+
+    <!-- LIGHTBOX -->
+    <div id="lightbox" onclick="handleLightboxClick(event)">
+        <button class="lightbox-nav lightbox-prev" onclick="navLightbox(-1)" aria-label="Previous image">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M15 19l-7-7 7-7"/></svg>
+        </button>
+        <img id="lightbox-img" src="" alt="Project photo enlarged">
+        <button class="lightbox-nav lightbox-next" onclick="navLightbox(1)" aria-label="Next image">
+            <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+        <div class="lightbox-counter" id="lightbox-counter"></div>
+    </div>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar" class="fixed top-0 left-0 w-full z-50 bg-base shadow-lg transition-colors duration-300" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="index.html" aria-label="How High Scaffolding Home">
+                <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-10" style="filter: invert(1);">
+            </a>
+            <div class="hidden lg:flex items-center gap-8">
+                <a href="index.html" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300">Home</a>
+                <a href="index.html#services" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300">Services</a>
+                <a href="index.html#about" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300">About</a>
+                <a href="projects.html" class="text-primary uppercase font-medium text-sm tracking-wider">Projects</a>
+                <a href="index.html#contact" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300">Contact</a>
+            </div>
+            <div class="hidden lg:flex items-center gap-4">
+                <a href="tel:07944362960" class="text-white text-sm font-medium hover:text-primary transition-colors duration-300 flex items-center gap-2" aria-label="Call us">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                    07944 362 960
+                </a>
+                <a href="index.html#contact" class="bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest px-6 py-3 rounded transition-colors duration-300 text-sm">Get a Quote</a>
+            </div>
+
+            <!-- Mobile Hamburger -->
+            <button id="hamburger" class="lg:hidden text-white p-2" aria-label="Toggle menu" aria-expanded="false">
+                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path id="hamburger-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    <path id="hamburger-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden fixed inset-0 top-0 z-40 flex flex-col items-center justify-center gap-8" style="background-color: rgba(10, 10, 10, 0.98);">
+            <a href="index.html" class="mobile-nav-link text-white text-3xl font-display uppercase tracking-wider hover:text-primary transition-colors duration-300">Home</a>
+            <a href="index.html#services" class="mobile-nav-link text-white text-3xl font-display uppercase tracking-wider hover:text-primary transition-colors duration-300">Services</a>
+            <a href="index.html#about" class="mobile-nav-link text-white text-3xl font-display uppercase tracking-wider hover:text-primary transition-colors duration-300">About</a>
+            <a href="projects.html" class="mobile-nav-link text-primary text-3xl font-display uppercase tracking-wider">Projects</a>
+            <a href="index.html#contact" class="mobile-nav-link text-white text-3xl font-display uppercase tracking-wider hover:text-primary transition-colors duration-300">Contact</a>
+            <a href="tel:07944362960" class="text-primary text-xl font-semibold mt-4">07944 362 960</a>
+            <a href="index.html#contact" class="mobile-nav-link bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300 mt-2">Get a Quote</a>
+        </div>
+    </nav>
+
+    <!-- ========== HERO BANNER ========== -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+        <!-- Background image -->
+        <div class="absolute inset-0">
+            <img src="images/projects/photo_60.jpg" alt="" class="w-full h-full object-cover" aria-hidden="true">
+            <div class="absolute inset-0 bg-gradient-to-b from-base/80 via-base/60 to-base"></div>
+        </div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-[-0.03em] mb-6" data-split="words">Completed Projects</h1>
+            <p class="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto mb-8" data-appear data-appear-delay="0.3">
+                Over 500 projects delivered safely across the UK. From residential homes to large-scale commercial builds — here's a look at our work.
+            </p>
+            <div class="flex items-center justify-center gap-8 text-sm uppercase tracking-wider" data-appear data-appear-delay="0.5">
+                <span class="text-primary font-semibold"><span data-counter="64" data-counter-suffix="+">0</span> Photos</span>
+                <span class="w-1 h-1 rounded-full bg-text-secondary"></span>
+                <span class="text-text-secondary">Residential</span>
+                <span class="w-1 h-1 rounded-full bg-text-secondary"></span>
+                <span class="text-text-secondary">Commercial</span>
+                <span class="w-1 h-1 rounded-full bg-text-secondary"></span>
+                <span class="text-text-secondary">Specialist</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== PROJECTS GALLERY ========== -->
+    <main class="py-12 md:py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Masonry Gallery -->
+            <div class="masonry" id="gallery-grid" data-stagger-parent>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(0)">
+                        <img src="images/projects/photo_02.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(1)">
+                        <img src="images/projects/photo_03.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(2)">
+                        <img src="images/projects/photo_04.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(3)">
+                        <img src="images/projects/photo_05.jpg" alt="Shrink wrapping project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(4)">
+                        <img src="images/projects/photo_06.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(5)">
+                        <img src="images/projects/photo_07.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(6)">
+                        <img src="images/projects/photo_08.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(7)">
+                        <img src="images/projects/photo_09.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(8)">
+                        <img src="images/projects/photo_10.jpg" alt="New build scaffolding" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(9)">
+                        <img src="images/projects/photo_11.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(10)">
+                        <img src="images/projects/photo_12.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(11)">
+                        <img src="images/projects/photo_13.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(12)">
+                        <img src="images/projects/photo_14.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(13)">
+                        <img src="images/projects/photo_15.jpg" alt="Heritage building scaffolding" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(14)">
+                        <img src="images/projects/photo_16.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(15)">
+                        <img src="images/projects/photo_17.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(16)">
+                        <img src="images/projects/photo_18.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(17)">
+                        <img src="images/projects/photo_19.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(18)">
+                        <img src="images/projects/photo_21.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(19)">
+                        <img src="images/projects/photo_22.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(20)">
+                        <img src="images/projects/photo_23.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(21)">
+                        <img src="images/projects/photo_24.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(22)">
+                        <img src="images/projects/photo_25.jpg" alt="Commercial scaffolding" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(23)">
+                        <img src="images/projects/photo_26.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(24)">
+                        <img src="images/projects/photo_27.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(25)">
+                        <img src="images/projects/photo_28.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(26)">
+                        <img src="images/projects/photo_29.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(27)">
+                        <img src="images/projects/photo_30.jpg" alt="Interior scaffolding" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(28)">
+                        <img src="images/projects/photo_31.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(29)">
+                        <img src="images/projects/photo_32.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(30)">
+                        <img src="images/projects/photo_33.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(31)">
+                        <img src="images/projects/photo_34.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(32)">
+                        <img src="images/projects/photo_35.jpg" alt="Industrial scaffolding" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(33)">
+                        <img src="images/projects/photo_36.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(34)">
+                        <img src="images/projects/photo_37.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(35)">
+                        <img src="images/projects/photo_38.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(36)">
+                        <img src="images/projects/photo_39.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(37)">
+                        <img src="images/projects/photo_40.jpg" alt="Safety netting installation" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(38)">
+                        <img src="images/projects/photo_41.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(39)">
+                        <img src="images/projects/photo_42.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(40)">
+                        <img src="images/projects/photo_43.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(41)">
+                        <img src="images/projects/photo_44.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(42)">
+                        <img src="images/projects/photo_45.jpg" alt="Safety netting on farm building" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(43)">
+                        <img src="images/projects/photo_46.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(44)">
+                        <img src="images/projects/photo_47.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(45)">
+                        <img src="images/projects/photo_48.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(46)">
+                        <img src="images/projects/photo_49.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(47)">
+                        <img src="images/projects/photo_50.jpg" alt="Residential scaffolding" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(48)">
+                        <img src="images/projects/photo_51.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(49)">
+                        <img src="images/projects/photo_52.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(50)">
+                        <img src="images/projects/photo_53.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(51)">
+                        <img src="images/projects/photo_54.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(52)">
+                        <img src="images/projects/photo_55.jpg" alt="Safety netting project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(53)">
+                        <img src="images/projects/photo_56.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(54)">
+                        <img src="images/projects/photo_57.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(55)">
+                        <img src="images/projects/photo_58.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(56)">
+                        <img src="images/projects/photo_59.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(57)">
+                        <img src="images/projects/photo_60.jpg" alt="Commercial steel frame scaffolding" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(58)">
+                        <img src="images/projects/photo_61.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(59)">
+                        <img src="images/projects/photo_62.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(60)">
+                        <img src="images/projects/photo_63.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(61)">
+                        <img src="images/projects/photo_64.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(62)">
+                        <img src="images/projects/photo_67.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+                <div class="masonry-item" data-stagger-child>
+                    <div class="relative overflow-hidden rounded-lg cursor-pointer group" onclick="openLightbox(63)">
+                        <img src="images/projects/photo_69.jpg" alt="Scaffolding project" loading="lazy" class="w-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ========== CTA BANNER ========== -->
+    <section class="bg-surface py-16 md:py-24 px-6">
+        <div class="max-w-4xl mx-auto text-center" data-reveal="fade-up">
+            <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] mb-6">Ready to Start Your Project?</h2>
+            <p class="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">Whether it's a residential scaffold, commercial build, or specialist access — we'll get you sorted. Get in touch for a free, no-obligation quote.</p>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="index.html#contact" class="bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300" data-magnetic>Get a Free Quote</a>
+                <a href="tel:07944362960" class="border-2 border-white text-white hover:border-primary hover:text-primary font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300" data-magnetic>Call 07944 362 960</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-footer py-12 px-6 border-t border-elevated">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <a href="index.html"><img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-12" style="filter: invert(1);"></a>
+                <nav class="flex flex-wrap gap-6 text-sm text-text-secondary" aria-label="Footer navigation">
+                    <a href="index.html" class="hover:text-primary transition-colors duration-300">Home</a>
+                    <a href="index.html#services" class="hover:text-primary transition-colors duration-300">Services</a>
+                    <a href="index.html#about" class="hover:text-primary transition-colors duration-300">About</a>
+                    <a href="projects.html" class="text-primary">Projects</a>
+                    <a href="index.html#contact" class="hover:text-primary transition-colors duration-300">Contact</a>
+                </nav>
+                <a href="tel:07944362960" class="text-primary hover:text-primary-hover transition-colors duration-300 font-semibold">07944 362 960</a>
+            </div>
+            <div class="mt-8 pt-8 border-t border-elevated flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
+                <p>&copy; 2026 How High Scaffolding. All rights reserved.</p>
+                <p>Built by <a href="https://aireyai.com" class="text-primary hover:text-primary-hover transition-colors duration-300">AireyAI</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="animations.js"></script>
+
+    <script>
+        // Photo array for lightbox navigation
+        const photos = [
+            'images/projects/photo_02.jpg','images/projects/photo_03.jpg','images/projects/photo_04.jpg',
+            'images/projects/photo_05.jpg','images/projects/photo_06.jpg','images/projects/photo_07.jpg',
+            'images/projects/photo_08.jpg','images/projects/photo_09.jpg','images/projects/photo_10.jpg',
+            'images/projects/photo_11.jpg','images/projects/photo_12.jpg','images/projects/photo_13.jpg',
+            'images/projects/photo_14.jpg','images/projects/photo_15.jpg','images/projects/photo_16.jpg',
+            'images/projects/photo_17.jpg','images/projects/photo_18.jpg','images/projects/photo_19.jpg',
+            'images/projects/photo_21.jpg','images/projects/photo_22.jpg','images/projects/photo_23.jpg',
+            'images/projects/photo_24.jpg','images/projects/photo_25.jpg','images/projects/photo_26.jpg',
+            'images/projects/photo_27.jpg','images/projects/photo_28.jpg','images/projects/photo_29.jpg',
+            'images/projects/photo_30.jpg','images/projects/photo_31.jpg','images/projects/photo_32.jpg',
+            'images/projects/photo_33.jpg','images/projects/photo_34.jpg','images/projects/photo_35.jpg',
+            'images/projects/photo_36.jpg','images/projects/photo_37.jpg','images/projects/photo_38.jpg',
+            'images/projects/photo_39.jpg','images/projects/photo_40.jpg','images/projects/photo_41.jpg',
+            'images/projects/photo_42.jpg','images/projects/photo_43.jpg','images/projects/photo_44.jpg',
+            'images/projects/photo_45.jpg','images/projects/photo_46.jpg','images/projects/photo_47.jpg',
+            'images/projects/photo_48.jpg','images/projects/photo_49.jpg','images/projects/photo_50.jpg',
+            'images/projects/photo_51.jpg','images/projects/photo_52.jpg','images/projects/photo_53.jpg',
+            'images/projects/photo_54.jpg','images/projects/photo_55.jpg','images/projects/photo_56.jpg',
+            'images/projects/photo_57.jpg','images/projects/photo_58.jpg','images/projects/photo_59.jpg',
+            'images/projects/photo_60.jpg','images/projects/photo_61.jpg','images/projects/photo_62.jpg',
+            'images/projects/photo_63.jpg','images/projects/photo_64.jpg','images/projects/photo_67.jpg',
+            'images/projects/photo_69.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+            img.src = photos[index];
+            counter.textContent = (index + 1) + ' / ' + photos.length;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navLightbox(direction) {
+            currentIndex = (currentIndex + direction + photos.length) % photos.length;
+            const img = document.getElementById('lightbox-img');
+            const counter = document.getElementById('lightbox-counter');
+            img.src = photos[currentIndex];
+            counter.textContent = (currentIndex + 1) + ' / ' + photos.length;
+        }
+
+        function handleLightboxClick(e) {
+            if (e.target === document.getElementById('lightbox') || e.target === document.getElementById('lightbox-img')) {
+                if (e.target === document.getElementById('lightbox')) {
+                    closeLightbox();
+                }
+            }
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const lightbox = document.getElementById('lightbox');
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navLightbox(-1);
+            if (e.key === 'ArrowRight') navLightbox(1);
+        });
+
+        // Mobile menu
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const hamburgerOpen = document.getElementById('hamburger-open');
+        const hamburgerClose = document.getElementById('hamburger-close');
+        if (hamburger && mobileMenu) {
+            hamburger.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+                hamburgerOpen.classList.toggle('hidden');
+                hamburgerClose.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                hamburgerOpen.classList.remove('hidden');
+                hamburgerClose.classList.add('hidden');
+            }));
+        }
+    </script>
+</body>
+</html>
