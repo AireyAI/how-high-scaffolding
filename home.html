@@ -11,13 +11,18 @@
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://howhighscaffolding.co.uk">
 
-    <!-- Preload hero image for faster LCP -->
-    <link rel="preload" href="images/hero-bg.jpg" as="image">
+    <!-- Preload critical assets for faster LCP -->
+    <link rel="preload" href="images/hero-bg.jpg" as="image" fetchpriority="high">
+    <link rel="preload" href="brand_assets/logo.png" as="image">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Preconnect to CDNs -->
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
 
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -112,7 +117,7 @@
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <!-- Logo -->
             <a href="#" aria-label="How High Scaffolding Home">
-                <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-10" style="filter: invert(1);">
+                <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-10" style="filter: invert(1);" width="200" height="200">
             </a>
 
             <!-- Desktop Nav -->
@@ -157,7 +162,7 @@
     <!-- ========== HERO ========== -->
     <section class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <!-- Video Background -->
-        <video autoplay muted loop playsinline preload="metadata" poster="images/hero-bg.jpg" class="absolute inset-0 w-full h-full object-cover" data-parallax="-50">
+        <video autoplay muted loop playsinline preload="none" poster="images/hero-bg.jpg" class="absolute inset-0 w-full h-full object-cover" data-parallax="-50">
             <source src="videos/hero-video.mp4" type="video/mp4">
         </video>
 
@@ -166,7 +171,7 @@
 
         <!-- Content -->
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
-            <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-24 mx-auto mb-8" style="filter: invert(1);" data-appear data-appear-delay="0">
+            <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-24 mx-auto mb-8" style="filter: invert(1);" width="200" height="200" fetchpriority="high" data-appear data-appear-delay="0">
             <h1 class="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-[-0.03em] mb-6 leading-[1.05]" data-split="chars">
                 Built to Reach Any Height
             </h1>
@@ -255,7 +260,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 <!-- Left: Image -->
                 <div class="lg:col-span-7">
-                    <img src="images/team-photo.jpg" alt="How High Scaffolding team at work" class="rounded-lg w-full object-cover shadow-2xl shadow-primary/10" loading="lazy" data-parallax="-80">
+                    <img src="images/team-photo.jpg" alt="How High Scaffolding team at work" class="rounded-lg w-full object-cover shadow-2xl shadow-primary/10" width="800" height="446" loading="lazy" data-parallax="-80">
                 </div>
 
                 <!-- Right: Content -->
@@ -586,7 +591,7 @@
     <footer class="bg-footer py-12 px-6 border-t border-elevated">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
-                <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-12" style="filter: invert(1);">
+                <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-12" style="filter: invert(1);" width="200" height="200" loading="lazy">
                 <nav class="grid grid-cols-3 sm:grid-cols-5 gap-4 text-center md:flex md:flex-wrap md:items-center md:gap-6" aria-label="Footer navigation">
                     <a href="#services" class="text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">Services</a>
                     <a href="#about" class="text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">About</a>
@@ -604,11 +609,11 @@
     </footer>
 
     <!-- ========== SCRIPTS ========== -->
-    <!-- GSAP + ScrollTrigger -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- GSAP + ScrollTrigger (deferred) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     <!-- AireyAI Animation Toolkit -->
-    <script src="animations.js"></script>
+    <script src="animations.js" defer></script>
 
     <script>
         // === NAV SCROLL EFFECT ===
