@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | How High Scaffolding</title>
+    <meta name="description" content="Privacy Policy for How High Scaffolding. How we collect, use, and protect your personal data.">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        base: '#0A0A0A',
+                        surface: '#141414',
+                        elevated: '#1A1A1A',
+                        primary: '#E87A1E',
+                        'primary-hover': '#FF9642',
+                        'text-secondary': '#A0A0A0',
+                        footer: '#080808',
+                    },
+                    fontFamily: {
+                        display: ['"Bebas Neue"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+
+    <style>
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: #0A0A0A;
+            color: #FFFFFF;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .grain::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            background-repeat: repeat;
+            background-size: 256px 256px;
+        }
+
+        a:focus-visible, button:focus-visible {
+            outline: 2px solid #E87A1E;
+            outline-offset: 2px;
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0A0A0A; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #E87A1E; }
+
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #0A0A0A;
+            z-index: 200;
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+        .page-transition.done { opacity: 0; }
+    </style>
+</head>
+<body class="grain">
+
+    <div class="page-transition" id="pageTransition"></div>
+
+    <!-- NAV -->
+    <nav class="fixed top-0 left-0 w-full z-50 bg-base shadow-lg" aria-label="Main navigation">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="home.html" aria-label="How High Scaffolding Home" class="page-link">
+                <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-10 w-auto" style="filter: invert(1);" width="200" height="200">
+            </a>
+            <a href="home.html" class="page-link text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300 flex items-center gap-2">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                Back to Home
+            </a>
+        </div>
+    </nav>
+
+    <!-- CONTENT -->
+    <main class="pt-32 pb-24 px-6">
+        <div class="max-w-3xl mx-auto">
+            <h1 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] mb-4">Privacy Policy</h1>
+            <p class="text-text-secondary mb-12">Last updated: 13 April 2026</p>
+
+            <div class="space-y-10 text-text-secondary leading-[1.8]">
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">1. Who We Are</h2>
+                    <p>How High Scaffolding is a scaffolding services provider based in Carlisle, Cumbria, United Kingdom. When we refer to "we", "us", or "our" in this policy, we mean How High Scaffolding.</p>
+                    <p class="mt-3">If you have any questions about this policy or how we handle your data, contact us at <a href="tel:07944362960" class="text-primary hover:text-primary-hover transition-colors duration-300">07944 362 960</a>.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">2. What Data We Collect</h2>
+                    <p>We collect the following personal information when you use our website:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 ml-4">
+                        <li><strong class="text-white">Contact form submissions:</strong> Name, phone number, email address, service required, and project details</li>
+                        <li><strong class="text-white">WhatsApp messages:</strong> When you contact us via WhatsApp, your phone number and message content</li>
+                        <li><strong class="text-white">Phone calls:</strong> Your phone number when you call us directly</li>
+                        <li><strong class="text-white">Cookie preferences:</strong> Your cookie consent choice, stored locally on your device</li>
+                    </ul>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">3. How We Use Your Data</h2>
+                    <p>We use the information you provide to:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 ml-4">
+                        <li>Respond to your enquiries and provide quotes</li>
+                        <li>Arrange and deliver scaffolding services</li>
+                        <li>Communicate about ongoing projects</li>
+                        <li>Improve our website and services</li>
+                    </ul>
+                    <p class="mt-3">We process your data based on <strong class="text-white">legitimate interest</strong> (responding to your enquiry) and, where applicable, your <strong class="text-white">consent</strong>.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">4. How We Store Your Data</h2>
+                    <p>Contact form submissions are processed through FormSubmit.co, a third-party form handling service, and delivered to us via email. We do not store your data in a database on our website.</p>
+                    <p class="mt-3">We retain your personal data only for as long as necessary to fulfil the purposes for which it was collected, typically for the duration of our business relationship plus any legally required retention period.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">5. Cookies</h2>
+                    <p>Our website uses minimal cookies:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 ml-4">
+                        <li><strong class="text-white">Cookie consent preference:</strong> Stored in your browser's localStorage to remember your choice. This is not a cookie but local storage data.</li>
+                        <li><strong class="text-white">Google Maps:</strong> Our contact section embeds Google Maps, which may set its own cookies. See <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-hover transition-colors duration-300">Google's Privacy Policy</a> for details.</li>
+                    </ul>
+                    <p class="mt-3">You can manage or delete cookies through your browser settings at any time.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">6. Third-Party Services</h2>
+                    <p>We use the following third-party services that may process your data:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 ml-4">
+                        <li><strong class="text-white">FormSubmit.co</strong> — processes contact form submissions</li>
+                        <li><strong class="text-white">Google Maps</strong> — embedded map on our contact page</li>
+                        <li><strong class="text-white">Google Fonts</strong> — web fonts loaded from Google's CDN</li>
+                        <li><strong class="text-white">WhatsApp (Meta)</strong> — messaging service for customer enquiries</li>
+                    </ul>
+                    <p class="mt-3">Each of these services has its own privacy policy governing how they handle data.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">7. Your Rights</h2>
+                    <p>Under UK GDPR, you have the right to:</p>
+                    <ul class="list-disc list-inside mt-3 space-y-2 ml-4">
+                        <li><strong class="text-white">Access</strong> — request a copy of the personal data we hold about you</li>
+                        <li><strong class="text-white">Rectification</strong> — ask us to correct inaccurate data</li>
+                        <li><strong class="text-white">Erasure</strong> — ask us to delete your personal data</li>
+                        <li><strong class="text-white">Restriction</strong> — ask us to limit how we use your data</li>
+                        <li><strong class="text-white">Objection</strong> — object to our processing of your data</li>
+                        <li><strong class="text-white">Portability</strong> — request your data in a portable format</li>
+                    </ul>
+                    <p class="mt-3">To exercise any of these rights, contact us by phone at <a href="tel:07944362960" class="text-primary hover:text-primary-hover transition-colors duration-300">07944 362 960</a>.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">8. Complaints</h2>
+                    <p>If you believe we have not handled your data correctly, you have the right to lodge a complaint with the <a href="https://ico.org.uk/make-a-complaint/" target="_blank" rel="noopener noreferrer" class="text-primary hover:text-primary-hover transition-colors duration-300">Information Commissioner's Office (ICO)</a>, the UK's data protection authority.</p>
+                </section>
+
+                <section>
+                    <h2 class="font-display text-2xl text-white uppercase tracking-[-0.03em] mb-4">9. Changes to This Policy</h2>
+                    <p>We may update this privacy policy from time to time. Any changes will be posted on this page with an updated revision date.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-footer py-12 px-6 border-t border-elevated">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6 mb-8">
+                <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-12 w-auto" style="filter: invert(1);" width="200" height="200" loading="lazy">
+                <nav class="flex flex-wrap items-center gap-6" aria-label="Footer navigation">
+                    <a href="home.html" class="page-link text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">Home</a>
+                    <a href="home.html#services" class="page-link text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">Services</a>
+                    <a href="projects.html" class="page-link text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">Projects</a>
+                    <a href="home.html#contact" class="page-link text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">Contact</a>
+                </nav>
+                <div class="flex items-center gap-4">
+                    <a href="tel:07944362960" class="text-primary font-semibold hover:text-primary-hover transition-colors duration-300">07944 362 960</a>
+                    <a href="https://web.facebook.com/profile.php?id=100095144231350" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-surface hover:bg-elevated border border-elevated hover:border-primary flex items-center justify-center transition-colors duration-300 group" aria-label="Follow us on Facebook">
+                        <svg class="w-5 h-5 text-text-secondary group-hover:text-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="border-t border-elevated pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-text-secondary text-sm">
+                <p>&copy; 2026 How High Scaffolding. All rights reserved.</p>
+                <p>Built by <a href="https://aireyai.com" class="text-primary hover:text-primary-hover transition-colors duration-300" target="_blank" rel="noopener noreferrer">AireyAI</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page entrance transition
+        window.addEventListener('load', () => {
+            document.getElementById('pageTransition').classList.add('done');
+        });
+
+        // Page exit transition for all internal links
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const href = this.getAttribute('href');
+                document.getElementById('pageTransition').classList.remove('done');
+                setTimeout(() => { window.location.href = href; }, 500);
+            });
+        });
+    </script>
+</body>
+</html>

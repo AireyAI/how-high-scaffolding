@@ -130,6 +130,19 @@
         ::-webkit-scrollbar-thumb:hover { background: #E87A1E; }
 
         /* Lightbox */
+        /* Page transition */
+        .page-transition {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #0A0A0A;
+            z-index: 10000;
+            opacity: 1;
+            pointer-events: none;
+            transition: opacity 0.6s ease;
+        }
+        .page-transition.done { opacity: 0; }
+
         #lightbox {
             position: fixed;
             inset: 0;
@@ -151,9 +164,12 @@
 </head>
 <body class="grain">
 
+    <!-- PAGE TRANSITION OVERLAY -->
+    <div class="page-transition" id="pageTransition"></div>
+
     <!-- LIGHTBOX -->
     <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Gallery image enlarged">
+        <img id="lightbox-img" alt="Gallery image enlarged">
     </div>
 
     <!-- ========== NAVIGATION ========== -->
@@ -169,7 +185,7 @@
                 <a href="#services" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Services</a>
                 <a href="#about" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">About</a>
                 <a href="#gallery" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Gallery</a>
-                <a href="projects.html" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Projects</a>
+                <a href="projects.html" class="page-link text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Projects</a>
                 <a href="#contact" class="text-white uppercase font-medium text-sm tracking-wider hover:text-primary transition-colors duration-300 relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-primary hover:after:w-full after:transition-all after:duration-300">Contact</a>
             </div>
 
@@ -466,6 +482,14 @@
                     </div>
                 </div>
             </div>
+
+            <!-- View All Projects CTA -->
+            <div class="text-center mt-12" data-reveal="fade-up">
+                <a href="projects.html" class="page-link inline-flex items-center gap-3 bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300 shadow-lg shadow-primary/20" data-magnetic>
+                    View All 60+ Projects
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"/></svg>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -491,53 +515,110 @@
         </div>
     </section>
 
-    <!-- ========== TESTIMONIALS ========== -->
-    <section class="py-24 md:py-32 px-6">
+    <!-- ========== TESTIMONIALS CAROUSEL ========== -->
+    <section class="py-24 md:py-32 px-6 overflow-hidden">
         <div class="max-w-7xl mx-auto">
             <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] text-center mb-16" data-reveal="fade-up">
                 What Our Clients Say
             </h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10" data-reveal="fade-up">
-                    <div class="flex gap-1 mb-4">
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+
+            <div class="relative" data-reveal="fade-up">
+                <!-- Carousel Track -->
+                <div id="testimonialCarousel" class="flex gap-8 transition-transform duration-500 ease-out">
+                    <!-- Testimonial 1 -->
+                    <div class="testimonial-slide min-w-full md:min-w-[calc(33.333%-1.33rem)] bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10">
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p class="text-text-secondary leading-[1.7] italic mb-6">"How High did an incredible job on our home extension. The scaffolding was up in a day and the team were professional from start to finish. Couldn't recommend them enough."</p>
+                        <p class="text-white font-semibold">James T.</p>
+                        <p class="text-text-secondary text-sm">Carlisle</p>
                     </div>
-                    <p class="text-text-secondary leading-[1.7] italic mb-6">"How High did an incredible job on our home extension. The scaffolding was up in a day and the team were professional from start to finish. Couldn't recommend them enough."</p>
-                    <p class="text-white font-semibold">James T.</p>
-                    <p class="text-text-secondary text-sm">Carlisle</p>
+
+                    <!-- Testimonial 2 -->
+                    <div class="testimonial-slide min-w-full md:min-w-[calc(33.333%-1.33rem)] bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10">
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p class="text-text-secondary leading-[1.7] italic mb-6">"We've used How High on multiple commercial projects now. Always on time, always safe, always competitive. They're our go-to scaffolding contractor."</p>
+                        <p class="text-white font-semibold">Sarah M.</p>
+                        <p class="text-text-secondary text-sm">Manchester</p>
+                    </div>
+
+                    <!-- Testimonial 3 -->
+                    <div class="testimonial-slide min-w-full md:min-w-[calc(33.333%-1.33rem)] bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10">
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p class="text-text-secondary leading-[1.7] italic mb-6">"Needed safety netting and shrink wrapping on a tricky roof job. How High handled it perfectly — nothing was too much trouble. Top quality work."</p>
+                        <p class="text-white font-semibold">David R.</p>
+                        <p class="text-text-secondary text-sm">Leeds</p>
+                    </div>
+
+                    <!-- Testimonial 4 -->
+                    <div class="testimonial-slide min-w-full md:min-w-[calc(33.333%-1.33rem)] bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10">
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p class="text-text-secondary leading-[1.7] italic mb-6">"Brilliant service from start to finish. They scaffolded our three-storey townhouse for a full re-render and the lads were tidy, punctual, and knew their stuff. Will definitely use again."</p>
+                        <p class="text-white font-semibold">Mark H.</p>
+                        <p class="text-text-secondary text-sm">Newcastle</p>
+                    </div>
+
+                    <!-- Testimonial 5 -->
+                    <div class="testimonial-slide min-w-full md:min-w-[calc(33.333%-1.33rem)] bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10">
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p class="text-text-secondary leading-[1.7] italic mb-6">"Called on a Friday afternoon needing emergency scaffolding for a storm-damaged chimney. How High had it sorted by Saturday morning. Absolute lifesavers."</p>
+                        <p class="text-white font-semibold">Karen W.</p>
+                        <p class="text-text-secondary text-sm">Penrith</p>
+                    </div>
+
+                    <!-- Testimonial 6 -->
+                    <div class="testimonial-slide min-w-full md:min-w-[calc(33.333%-1.33rem)] bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10">
+                        <div class="flex gap-1 mb-4">
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                            <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        </div>
+                        <p class="text-text-secondary leading-[1.7] italic mb-6">"As a roofing contractor I need scaffolders I can rely on. How High turn up when they say they will and the scaffold is always spot on. Solid partnership."</p>
+                        <p class="text-white font-semibold">Craig B.</p>
+                        <p class="text-text-secondary text-sm">Glasgow</p>
+                    </div>
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10" data-reveal="fade-up">
-                    <div class="flex gap-1 mb-4">
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="text-text-secondary leading-[1.7] italic mb-6">"We've used How High on multiple commercial projects now. Always on time, always safe, always competitive. They're our go-to scaffolding contractor."</p>
-                    <p class="text-white font-semibold">Sarah M.</p>
-                    <p class="text-text-secondary text-sm">Manchester</p>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="bg-surface rounded-lg p-8 border-t-4 border-primary shadow-lg shadow-primary/10" data-reveal="fade-up">
-                    <div class="flex gap-1 mb-4">
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                        <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-                    </div>
-                    <p class="text-text-secondary leading-[1.7] italic mb-6">"Needed safety netting and shrink wrapping on a tricky roof job. How High handled it perfectly — nothing was too much trouble. Top quality work."</p>
-                    <p class="text-white font-semibold">David R.</p>
-                    <p class="text-text-secondary text-sm">Leeds</p>
+                <!-- Carousel Controls -->
+                <div class="flex items-center justify-center gap-4 mt-10">
+                    <button id="testimonialPrev" class="w-12 h-12 rounded-full bg-surface border border-elevated hover:border-primary hover:bg-elevated flex items-center justify-center transition-colors duration-300" aria-label="Previous testimonial">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5"/></svg>
+                    </button>
+                    <div id="testimonialDots" class="flex gap-2"></div>
+                    <button id="testimonialNext" class="w-12 h-12 rounded-full bg-surface border border-elevated hover:border-primary hover:bg-elevated flex items-center justify-center transition-colors duration-300" aria-label="Next testimonial">
+                        <svg class="w-5 h-5 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5"/></svg>
+                    </button>
                 </div>
             </div>
         </div>
@@ -745,21 +826,30 @@
                     <a href="projects.html" class="text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">Projects</a>
                     <a href="#contact" class="text-text-secondary hover:text-white uppercase text-sm tracking-wider transition-colors duration-300">Contact</a>
                 </nav>
-                <a href="tel:07944362960" class="text-primary font-semibold hover:text-primary-hover transition-colors duration-300">07944 362 960</a>
+                <div class="flex items-center gap-4">
+                    <a href="tel:07944362960" class="text-primary font-semibold hover:text-primary-hover transition-colors duration-300">07944 362 960</a>
+                    <a href="https://web.facebook.com/profile.php?id=100095144231350" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-surface hover:bg-elevated border border-elevated hover:border-primary flex items-center justify-center transition-colors duration-300 group" aria-label="Follow us on Facebook">
+                        <svg class="w-5 h-5 text-text-secondary group-hover:text-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </a>
+                </div>
             </div>
             <div class="border-t border-elevated pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-text-secondary text-sm">
                 <p>&copy; 2026 How High Scaffolding. All rights reserved.</p>
-                <p>Built by <a href="https://aireyai.com" class="text-primary hover:text-primary-hover transition-colors duration-300" target="_blank" rel="noopener noreferrer">AireyAI</a></p>
+                <div class="flex items-center gap-4">
+                    <a href="privacy.html" class="page-link text-text-secondary hover:text-white transition-colors duration-300">Privacy Policy</a>
+                    <span class="text-elevated">|</span>
+                    <p>Built by <a href="https://aireyai.com" class="text-primary hover:text-primary-hover transition-colors duration-300" target="_blank" rel="noopener noreferrer">AireyAI</a></p>
+                </div>
             </div>
         </div>
     </footer>
 
     <!-- ========== SCRIPTS ========== -->
-    <!-- GSAP + ScrollTrigger (deferred) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    <!-- GSAP + ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     <!-- AireyAI Animation Toolkit -->
-    <script src="animations.js" defer></script>
+    <script src="animations.js"></script>
 
     <script>
         // === NAV SCROLL EFFECT ===
@@ -961,7 +1051,7 @@
 
     <!-- ========== COOKIE CONSENT BANNER ========== -->
     <div id="cookieBanner" class="hidden fixed left-4 right-4 md:left-6 md:right-6 z-[70] bg-[#1A1A1A] border border-[#2a2a2a] rounded-lg px-6 py-5 flex items-start md:items-center justify-between gap-4 flex-col md:flex-row shadow-2xl" style="bottom: 80px;">
-        <p class="text-[#A0A0A0] text-sm leading-relaxed">We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.</p>
+        <p class="text-[#A0A0A0] text-sm leading-relaxed">We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies. <a href="privacy.html" class="text-[#E87A1E] hover:text-[#FF9642] transition-colors duration-300 underline">Privacy Policy</a></p>
         <div class="flex gap-3 shrink-0 w-full md:w-auto">
             <button onclick="declineCookies()" class="flex-1 md:flex-none px-5 py-3 text-sm uppercase tracking-wider text-[#A0A0A0] border border-[#333] rounded hover:text-white hover:border-white/30 transition-colors duration-300 cursor-pointer">Decline</button>
             <button onclick="acceptCookies()" class="flex-1 md:flex-none px-5 py-3 text-sm uppercase tracking-wider bg-[#E87A1E] hover:bg-[#FF9642] text-[#0A0A0A] rounded font-semibold transition-colors duration-300 cursor-pointer">Accept</button>
@@ -981,6 +1071,108 @@
             localStorage.setItem('cookieConsent', 'declined');
             document.getElementById('cookieBanner').classList.add('hidden');
         }
+    </script>
+
+    <script>
+        // === TESTIMONIAL CAROUSEL ===
+        (function() {
+            const track = document.getElementById('testimonialCarousel');
+            const slides = track.querySelectorAll('.testimonial-slide');
+            const prevBtn = document.getElementById('testimonialPrev');
+            const nextBtn = document.getElementById('testimonialNext');
+            const dotsContainer = document.getElementById('testimonialDots');
+            let current = 0;
+            let perView = 3;
+            let autoplayTimer;
+
+            function getPerView() {
+                return window.innerWidth < 768 ? 1 : 3;
+            }
+
+            function getMaxIndex() {
+                return Math.max(0, slides.length - perView);
+            }
+
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const total = getMaxIndex() + 1;
+                for (let i = 0; i < total; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'w-2.5 h-2.5 rounded-full transition-colors duration-300 ' + (i === current ? 'bg-primary' : 'bg-elevated');
+                    dot.setAttribute('aria-label', 'Go to testimonial ' + (i + 1));
+                    dot.addEventListener('click', () => goTo(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateDots() {
+                const dots = dotsContainer.children;
+                for (let i = 0; i < dots.length; i++) {
+                    dots[i].className = 'w-2.5 h-2.5 rounded-full transition-colors duration-300 ' + (i === current ? 'bg-primary' : 'bg-elevated');
+                }
+            }
+
+            function goTo(index) {
+                current = Math.max(0, Math.min(index, getMaxIndex()));
+                const slideWidth = slides[0].offsetWidth + 32; // 32px = gap-8
+                track.style.transform = 'translateX(-' + (current * slideWidth) + 'px)';
+                updateDots();
+                resetAutoplay();
+            }
+
+            function next() { goTo(current >= getMaxIndex() ? 0 : current + 1); }
+            function prev() { goTo(current <= 0 ? getMaxIndex() : current - 1); }
+
+            function resetAutoplay() {
+                clearInterval(autoplayTimer);
+                autoplayTimer = setInterval(next, 5000);
+            }
+
+            prevBtn.addEventListener('click', prev);
+            nextBtn.addEventListener('click', next);
+
+            function init() {
+                perView = getPerView();
+                if (current > getMaxIndex()) current = getMaxIndex();
+                buildDots();
+                goTo(current);
+            }
+
+            init();
+            window.addEventListener('resize', init);
+            resetAutoplay();
+
+            // Pause on hover
+            track.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+            track.addEventListener('mouseleave', resetAutoplay);
+
+            // Touch swipe support
+            let touchStartX = 0;
+            track.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; clearInterval(autoplayTimer); }, { passive: true });
+            track.addEventListener('touchend', (e) => {
+                const diff = touchStartX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 50) { diff > 0 ? next() : prev(); }
+                resetAutoplay();
+            }, { passive: true });
+        })();
+
+        // === PAGE TRANSITIONS ===
+        // Fade in on load
+        window.addEventListener('load', () => {
+            document.getElementById('pageTransition').classList.add('done');
+        });
+
+        // Fade out on internal link click
+        document.querySelectorAll('.page-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && !href.startsWith('#') && !href.startsWith('tel:') && !href.startsWith('https://wa.me') && !href.startsWith('http')) {
+                    e.preventDefault();
+                    document.getElementById('pageTransition').classList.remove('done');
+                    setTimeout(() => { window.location.href = href; }, 500);
+                }
+            });
+        });
     </script>
 </body>
 </html>
