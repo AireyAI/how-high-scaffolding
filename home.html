@@ -960,11 +960,11 @@
     </script>
 
     <!-- ========== COOKIE CONSENT BANNER ========== -->
-    <div id="cookieBanner" class="hidden fixed bottom-0 left-0 right-0 z-[60] bg-surface/95 backdrop-blur-sm border-t border-elevated px-6 py-4 flex items-center justify-between gap-4 flex-col md:flex-row" style="padding-bottom: max(16px, env(safe-area-inset-bottom));">
-        <p class="text-text-secondary text-sm leading-relaxed">We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.</p>
-        <div class="flex gap-3 shrink-0">
-            <button onclick="declineCookies()" class="px-5 py-2 text-sm uppercase tracking-wider text-text-secondary border border-elevated rounded hover:text-white hover:border-white/30 transition-colors duration-300">Decline</button>
-            <button onclick="acceptCookies()" class="px-5 py-2 text-sm uppercase tracking-wider bg-primary hover:bg-primary-hover text-base rounded font-semibold transition-colors duration-300">Accept</button>
+    <div id="cookieBanner" class="hidden fixed left-4 right-4 md:left-6 md:right-6 z-[70] bg-[#1A1A1A] border border-[#2a2a2a] rounded-lg px-6 py-5 flex items-start md:items-center justify-between gap-4 flex-col md:flex-row shadow-2xl" style="bottom: 80px;">
+        <p class="text-[#A0A0A0] text-sm leading-relaxed">We use cookies to improve your experience on our site. By continuing to browse, you agree to our use of cookies.</p>
+        <div class="flex gap-3 shrink-0 w-full md:w-auto">
+            <button onclick="declineCookies()" class="flex-1 md:flex-none px-5 py-3 text-sm uppercase tracking-wider text-[#A0A0A0] border border-[#333] rounded hover:text-white hover:border-white/30 transition-colors duration-300 cursor-pointer">Decline</button>
+            <button onclick="acceptCookies()" class="flex-1 md:flex-none px-5 py-3 text-sm uppercase tracking-wider bg-[#E87A1E] hover:bg-[#FF9642] text-[#0A0A0A] rounded font-semibold transition-colors duration-300 cursor-pointer">Accept</button>
         </div>
     </div>
 
