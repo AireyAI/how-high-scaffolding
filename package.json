@@ -1,0 +1,11 @@
+{
+  "name": "how-high-scaffolding",
+  "type": "module",
+  "scripts": {
+    "serve": "node serve.mjs",
+    "screenshot": "node screenshot.mjs"
+  },
+  "dependencies": {
+    "puppeteer": "^22.0.0"
+  }
+}
