@@ -11,6 +11,9 @@
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://howhighscaffolding.co.uk">
 
+    <!-- Preload hero image for faster LCP -->
+    <link rel="preload" href="images/hero-bg.jpg" as="image">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,7 +155,7 @@
     <!-- ========== HERO ========== -->
     <section class="relative min-h-[100dvh] flex items-center justify-center overflow-hidden">
         <!-- Video Background -->
-        <video autoplay muted loop playsinline poster="images/hero-bg.jpg" class="absolute inset-0 w-full h-full object-cover" data-parallax="-50">
+        <video autoplay muted loop playsinline preload="metadata" poster="images/hero-bg.jpg" class="absolute inset-0 w-full h-full object-cover" data-parallax="-50">
             <source src="videos/hero-video.mp4" type="video/mp4">
         </video>
 
@@ -265,7 +268,7 @@
                             <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                         </svg>
                         <div>
-                            <h4 class="text-white font-semibold text-lg mb-1">Fully Insured</h4>
+                            <h3 class="text-white font-semibold text-lg mb-1">Fully Insured</h3>
                             <p class="text-text-secondary leading-[1.7]">Complete public and employer's liability coverage on every job.</p>
                         </div>
                     </div>
@@ -276,7 +279,7 @@
                             <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                         </svg>
                         <div>
-                            <h4 class="text-white font-semibold text-lg mb-1">CITB Certified</h4>
+                            <h3 class="text-white font-semibold text-lg mb-1">CITB Certified</h3>
                             <p class="text-text-secondary leading-[1.7]">All operatives hold current CITB cards and safety certifications.</p>
                         </div>
                     </div>
@@ -287,7 +290,7 @@
                             <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                         </svg>
                         <div>
-                            <h4 class="text-white font-semibold text-lg mb-1">Fast Turnaround</h4>
+                            <h3 class="text-white font-semibold text-lg mb-1">Fast Turnaround</h3>
                             <p class="text-text-secondary leading-[1.7]">Rapid response and efficient scaffold erection to keep your project on schedule.</p>
                         </div>
                     </div>
@@ -298,7 +301,7 @@
                             <path d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                         </svg>
                         <div>
-                            <h4 class="text-white font-semibold text-lg mb-1">UK-Wide Coverage</h4>
+                            <h3 class="text-white font-semibold text-lg mb-1">UK-Wide Coverage</h3>
                             <p class="text-text-secondary leading-[1.7]">Based in Carlisle, our teams operate across the entire United Kingdom.</p>
                         </div>
                     </div>
