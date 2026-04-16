@@ -23,6 +23,7 @@
         "description": "Professional scaffolding services across the UK. Based in Carlisle — residential, commercial, safety netting, shrink wrapping & specialist access solutions.",
         "url": "https://aireyai.github.io/how-high-scaffolding/home.html",
         "telephone": "+447944362960",
+        "email": "liam@howhighscaffolding.com",
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Carlisle",
@@ -540,8 +541,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Left: Form -->
                 <div>
-                    <!-- CONFIGURE: Replace with client email to enable FormSubmit -->
-                    <form id="quote-form" action="#" method="POST" onsubmit="handleSubmit(event)">
+                    <form id="quote-form" action="https://formsubmit.co/liam@howhighscaffolding.com" method="POST" onsubmit="handleSubmit(event)">
                         <!-- FormSubmit config -->
                         <input type="hidden" name="_subject" value="New Quote Request — How High Scaffolding">
                         <input type="hidden" name="_captcha" value="false">
@@ -601,6 +601,18 @@
                         <div>
                             <p class="text-white font-semibold text-lg group-hover:text-primary transition-colors duration-300">07944 362 960</p>
                             <p class="text-text-secondary text-sm">Call us anytime</p>
+                        </div>
+                    </a>
+
+                    <a href="mailto:liam@howhighscaffolding.com" class="flex items-center gap-4 mb-6 group" data-reveal="fade-up">
+                        <div class="w-12 h-12 rounded-full bg-surface flex items-center justify-center group-hover:bg-primary transition-colors duration-300">
+                            <svg class="w-5 h-5 text-primary group-hover:text-base transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="text-white font-semibold text-lg group-hover:text-primary transition-colors duration-300">liam@howhighscaffolding.com</p>
+                            <p class="text-text-secondary text-sm">Email us</p>
                         </div>
                     </a>
 
@@ -735,6 +747,8 @@
                 </nav>
                 <div class="flex items-center gap-4">
                     <a href="tel:07944362960" class="text-primary font-semibold hover:text-primary-hover transition-colors duration-300">07944 362 960</a>
+                    <span class="text-elevated">|</span>
+                    <a href="mailto:liam@howhighscaffolding.com" class="text-text-secondary hover:text-white transition-colors duration-300 text-sm">liam@howhighscaffolding.com</a>
                     <a href="https://web.facebook.com/profile.php?id=100095144231350" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-surface hover:bg-elevated border border-elevated hover:border-primary flex items-center justify-center transition-colors duration-300 group" aria-label="Follow us on Facebook">
                         <svg class="w-5 h-5 text-text-secondary group-hover:text-primary transition-colors duration-300" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                     </a>
@@ -895,21 +909,26 @@
         function handleSubmit(event) {
             event.preventDefault();
             const form = document.getElementById('quote-form');
-            const btn = document.getElementById('submitBtn');
             const success = document.getElementById('form-success');
 
-            // Build WhatsApp message from form fields
+            // Collect form data
             const name = form.querySelector('#name').value.trim();
             const phone = form.querySelector('#phone').value.trim();
             const email = form.querySelector('#email').value.trim();
             const service = form.querySelector('#service').value;
+            const serviceText = form.querySelector('#service option:checked').textContent;
             const details = form.querySelector('#details').value.trim();
 
+            // Send to FormSubmit (email to liam@howhighscaffolding.com)
+            const formData = new FormData(form);
+            fetch(form.action, { method: 'POST', body: formData }).catch(() => {});
+
+            // Also open WhatsApp
             let msg = `Hi, I'd like a scaffolding quote please.\n\n`;
             msg += `Name: ${name}\n`;
             msg += `Phone: ${phone}\n`;
             if (email) msg += `Email: ${email}\n`;
-            if (service) msg += `Service: ${form.querySelector('#service option:checked').textContent}\n`;
+            if (service) msg += `Service: ${serviceText}\n`;
             if (details) msg += `Details: ${details}\n`;
 
             const waURL = `https://wa.me/447944362960?text=${encodeURIComponent(msg)}`;
