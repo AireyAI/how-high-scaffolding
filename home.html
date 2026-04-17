@@ -161,6 +161,197 @@
             object-fit: contain;
             border-radius: 8px;
         }
+
+        /* ─── POLISH UPGRADES ─────────────────────────────── */
+
+        /* Kicker: small uppercase label with primary dot */
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #E87A1E;
+            margin-bottom: 18px;
+        }
+        .kicker::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: #E87A1E;
+            display: inline-block;
+        }
+        .kicker--center { justify-content: center; }
+        .kicker--center::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: #E87A1E;
+            display: inline-block;
+        }
+
+        /* Section ambient gradient (layered radial, brand-tinted) */
+        .bg-amber-glow {
+            position: relative;
+            isolation: isolate;
+        }
+        .bg-amber-glow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 50% at 50% 0%, rgba(232,122,30,0.06), transparent 60%),
+                radial-gradient(ellipse 60% 40% at 100% 100%, rgba(232,122,30,0.04), transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Section number badge (large outline numeral) */
+        .section-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 6vw, 5rem);
+            line-height: 0.9;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(232,122,30,0.4);
+            letter-spacing: 0.05em;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* Soft glow on stat numbers */
+        .stat-glow {
+            text-shadow:
+                0 0 30px rgba(232,122,30,0.35),
+                0 0 60px rgba(232,122,30,0.15);
+        }
+        .stat-divider {
+            position: relative;
+        }
+        .stat-divider:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: -1rem;
+            top: 20%;
+            bottom: 20%;
+            width: 1px;
+            background: linear-gradient(to bottom, transparent, rgba(232,122,30,0.25), transparent);
+        }
+        @media (max-width: 767px) {
+            .stat-divider:not(:last-child)::after { display: none; }
+        }
+
+        /* Service card: number badge + shine on hover */
+        .service-card {
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s ease;
+        }
+        .service-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(232,122,30,0.08) 50%, transparent 60%);
+            transform: translateX(-100%);
+            transition: transform 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+            pointer-events: none;
+        }
+        .service-card:hover::after { transform: translateX(100%); }
+        .service-card:hover { border-color: rgba(232,122,30,0.55); }
+        .service-num {
+            position: absolute;
+            top: 16px;
+            right: 20px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            color: rgba(232,122,30,0.35);
+            letter-spacing: 0.05em;
+            transition: color 0.4s ease;
+        }
+        .service-card:hover .service-num { color: rgba(232,122,30,0.9); }
+
+        /* Gallery item: ring glow on hover */
+        .gallery-item {
+            transition: box-shadow 0.4s ease;
+        }
+        .gallery-item:hover {
+            box-shadow: 0 0 0 1px rgba(232,122,30,0.5), 0 12px 40px -10px rgba(232,122,30,0.25);
+        }
+
+        /* Animated play button ring */
+        .play-ring {
+            position: absolute;
+            inset: -8px;
+            border: 2px solid rgba(232,122,30,0.5);
+            border-radius: 50%;
+            animation: play-pulse 2.4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+            pointer-events: none;
+        }
+        @keyframes play-pulse {
+            0%, 100% { transform: scale(1); opacity: 0.7; }
+            50% { transform: scale(1.15); opacity: 0; }
+        }
+
+        /* Form input focus glow */
+        .form-input {
+            transition: border-color 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: #E87A1E;
+            box-shadow: 0 0 0 4px rgba(232,122,30,0.12);
+            background-color: #181818;
+        }
+
+        /* FAQ item active state */
+        .faq-item {
+            transition: border-color 0.3s ease, background-color 0.3s ease;
+        }
+        .faq-item:hover { border-color: rgba(232,122,30,0.35); }
+        .faq-item.is-open {
+            border-color: rgba(232,122,30,0.55);
+            background-color: #181818;
+        }
+
+        /* Section seam: thin amber-tinted rule */
+        .seam {
+            display: block;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right,
+                transparent, rgba(232,122,30,0.18), rgba(232,122,30,0.32), rgba(232,122,30,0.18), transparent);
+            border: 0;
+        }
+
+        /* Trust strip */
+        .trust-strip {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+            padding: 20px 24px;
+            border-top: 1px solid rgba(232,122,30,0.15);
+            border-bottom: 1px solid rgba(232,122,30,0.15);
+            background: linear-gradient(180deg, rgba(232,122,30,0.025), transparent);
+        }
+        .trust-strip .trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: #A0A0A0;
+            font-size: 0.78rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            font-weight: 500;
+        }
+        .trust-strip .trust-item svg {
+            color: #E87A1E;
+            width: 18px;
+            height: 18px;
+            flex-shrink: 0;
+        }
     </style>
 </head>
 <body class="grain">
@@ -227,17 +418,19 @@
             <source src="videos/hero-video.mp4" type="video/mp4">
         </video>
 
-        <!-- Dark Overlay -->
-        <div class="absolute inset-0 bg-gradient-to-b from-black/70 to-black/40"></div>
+        <!-- Dark Overlay (layered with brand-tinted vignette) -->
+        <div class="absolute inset-0 bg-gradient-to-b from-black/75 via-black/55 to-black/45"></div>
+        <div class="absolute inset-0 pointer-events-none" style="background: radial-gradient(ellipse 60% 50% at 50% 100%, rgba(232,122,30,0.18), transparent 70%);"></div>
 
         <!-- Content -->
         <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
             <img src="brand_assets/logo.png" alt="How High Scaffolding" class="h-16 sm:h-24 w-auto mx-auto mb-6 sm:mb-8" style="filter: invert(1);" width="200" height="200" fetchpriority="high" data-appear data-appear-delay="0">
+            <span class="kicker kicker--center" data-appear data-appear-delay="0.1">Est. Carlisle &middot; UK&#8209;Wide</span>
             <h1 class="font-display text-[2.5rem] sm:text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-[-0.03em] mb-6 leading-[1.05]" data-split="chars">
                 Built to Reach Any Height
             </h1>
             <p class="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10" data-appear data-appear-delay="0.4">
-                Scaffolding, Safety Netting & Specialist Access Solutions — Carlisle to Nationwide
+                Scaffolding, Safety Netting & Specialist Access Solutions &mdash; Carlisle to Nationwide
             </p>
             <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center px-4 sm:px-0">
                 <a href="#contact" class="bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300 shadow-lg shadow-primary/20 text-center" data-magnetic data-appear data-appear-delay="0.6">
@@ -250,65 +443,84 @@
         </div>
     </section>
 
+    <!-- ========== TRUST STRIP ========== -->
+    <div class="trust-strip" data-reveal="fade-up">
+        <span class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>Fully Insured</span>
+        <span class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>CITB Certified</span>
+        <span class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>500+ Projects</span>
+        <span class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>15+ Years</span>
+        <span class="trust-item"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>24h Response</span>
+    </div>
+
     <!-- ========== SERVICES ========== -->
-    <section id="services" class="py-16 md:py-32 px-4 sm:px-6">
+    <section id="services" class="py-16 md:py-32 px-4 sm:px-6 bg-amber-glow">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] text-center mb-16" data-reveal="fade-up">
-                What We Do
-            </h2>
+            <div class="text-center mb-16" data-reveal="fade-up">
+                <span class="kicker kicker--center">01 &mdash; Our Services</span>
+                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em]">
+                    What We Do
+                </h2>
+                <p class="text-text-secondary max-w-xl mx-auto mt-4">Six specialist access solutions, delivered to British Standard. From a back-garden extension to a multi-storey commercial site.</p>
+            </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-8" data-stagger-parent>
                 <!-- Card 1: Residential -->
-                <div class="bg-surface rounded-lg p-6 md:p-8 border-l-4 border-primary hover:bg-elevated transition-colors duration-300 shadow-lg shadow-primary/10" data-stagger-child data-tilt>
-                    <svg class="w-10 h-10 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <div class="service-card bg-surface rounded-lg p-6 md:p-8 border border-elevated border-l-4 border-l-primary hover:bg-elevated shadow-lg shadow-primary/10" data-stagger-child data-tilt>
+                    <span class="service-num">01</span>
+                    <svg class="w-12 h-12 text-primary mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/>
                     </svg>
-                    <h3 class="font-display text-2xl text-white uppercase mb-3">Residential Scaffolding</h3>
+                    <h3 class="font-display text-2xl text-white uppercase mb-3 tracking-wide">Residential Scaffolding</h3>
                     <p class="text-text-secondary leading-[1.7]">Safe, reliable scaffolding for home builds, extensions, loft conversions, and renovation projects of any size.</p>
                 </div>
 
                 <!-- Card 2: Commercial -->
-                <div class="bg-surface rounded-lg p-6 md:p-8 border-l-4 border-primary hover:bg-elevated transition-colors duration-300 shadow-lg shadow-primary/10" data-stagger-child data-tilt>
-                    <svg class="w-10 h-10 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <div class="service-card bg-surface rounded-lg p-6 md:p-8 border border-elevated border-l-4 border-l-primary hover:bg-elevated shadow-lg shadow-primary/10" data-stagger-child data-tilt>
+                    <span class="service-num">02</span>
+                    <svg class="w-12 h-12 text-primary mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 21h16.5M4.5 3h15M5.25 3v18m13.5-18v18M9 6.75h1.5m-1.5 3h1.5m-1.5 3h1.5m3-6H15m-1.5 3H15m-1.5 3H15M9 21v-3.375c0-.621.504-1.125 1.125-1.125h3.75c.621 0 1.125.504 1.125 1.125V21"/>
                     </svg>
-                    <h3 class="font-display text-2xl text-white uppercase mb-3">Commercial Scaffolding</h3>
+                    <h3 class="font-display text-2xl text-white uppercase mb-3 tracking-wide">Commercial Scaffolding</h3>
                     <p class="text-text-secondary leading-[1.7]">Large-scale scaffolding solutions for commercial builds, industrial sites, and multi-storey projects across the UK.</p>
                 </div>
 
                 <!-- Card 3: Safety Netting -->
-                <div class="bg-surface rounded-lg p-6 md:p-8 border-l-4 border-primary hover:bg-elevated transition-colors duration-300 shadow-lg shadow-primary/10" data-stagger-child data-tilt>
-                    <svg class="w-10 h-10 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <div class="service-card bg-surface rounded-lg p-6 md:p-8 border border-elevated border-l-4 border-l-primary hover:bg-elevated shadow-lg shadow-primary/10" data-stagger-child data-tilt>
+                    <span class="service-num">03</span>
+                    <svg class="w-12 h-12 text-primary mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z"/>
                     </svg>
-                    <h3 class="font-display text-2xl text-white uppercase mb-3">Safety Netting</h3>
+                    <h3 class="font-display text-2xl text-white uppercase mb-3 tracking-wide">Safety Netting</h3>
                     <p class="text-text-secondary leading-[1.7]">Professional fall protection and safety netting systems installed to the highest standards for any height.</p>
                 </div>
 
                 <!-- Card 4: Shrink Wrapping -->
-                <div class="bg-surface rounded-lg p-6 md:p-8 border-l-4 border-primary hover:bg-elevated transition-colors duration-300 shadow-lg shadow-primary/10" data-stagger-child data-tilt>
-                    <svg class="w-10 h-10 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <div class="service-card bg-surface rounded-lg p-6 md:p-8 border border-elevated border-l-4 border-l-primary hover:bg-elevated shadow-lg shadow-primary/10" data-stagger-child data-tilt>
+                    <span class="service-num">04</span>
+                    <svg class="w-12 h-12 text-primary mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"/>
                     </svg>
-                    <h3 class="font-display text-2xl text-white uppercase mb-3">Shrink Wrapping</h3>
+                    <h3 class="font-display text-2xl text-white uppercase mb-3 tracking-wide">Shrink Wrapping</h3>
                     <p class="text-text-secondary leading-[1.7]">Complete weather protection for roofing projects. Keep your site dry and your schedule on track.</p>
                 </div>
 
                 <!-- Card 5: Permanent Handrails -->
-                <div class="bg-surface rounded-lg p-6 md:p-8 border-l-4 border-primary hover:bg-elevated transition-colors duration-300 shadow-lg shadow-primary/10" data-stagger-child data-tilt>
-                    <svg class="w-10 h-10 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <div class="service-card bg-surface rounded-lg p-6 md:p-8 border border-elevated border-l-4 border-l-primary hover:bg-elevated shadow-lg shadow-primary/10" data-stagger-child data-tilt>
+                    <span class="service-num">05</span>
+                    <svg class="w-12 h-12 text-primary mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5M3.75 17.25h16.5M6 6.75v10.5M10 6.75v10.5M14 6.75v10.5M18 6.75v10.5"/>
                     </svg>
-                    <h3 class="font-display text-2xl text-white uppercase mb-3">Permanent Handrails</h3>
+                    <h3 class="font-display text-2xl text-white uppercase mb-3 tracking-wide">Permanent Handrails</h3>
                     <p class="text-text-secondary leading-[1.7]">Fixed handrail systems on tin sheet roofs for safe solar panel installation and ongoing roof access.</p>
                 </div>
 
                 <!-- Card 6: Nationwide Coverage -->
-                <div class="bg-surface rounded-lg p-6 md:p-8 border-l-4 border-primary hover:bg-elevated transition-colors duration-300 shadow-lg shadow-primary/10" data-stagger-child data-tilt>
-                    <svg class="w-10 h-10 text-primary mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+                <div class="service-card bg-surface rounded-lg p-6 md:p-8 border border-elevated border-l-4 border-l-primary hover:bg-elevated shadow-lg shadow-primary/10" data-stagger-child data-tilt>
+                    <span class="service-num">06</span>
+                    <svg class="w-12 h-12 text-primary mb-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
                         <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
                     </svg>
-                    <h3 class="font-display text-2xl text-white uppercase mb-3">Nationwide Coverage</h3>
+                    <h3 class="font-display text-2xl text-white uppercase mb-3 tracking-wide">Nationwide Coverage</h3>
                     <p class="text-text-secondary leading-[1.7]">Based in Carlisle with teams covering the full UK. No job too far, no project too large.</p>
                 </div>
             </div>
@@ -326,7 +538,8 @@
 
                 <!-- Right: Content -->
                 <div class="lg:col-span-5">
-                    <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] mb-10" data-reveal="fade-right">
+                    <span class="kicker" data-reveal="fade-right">02 &mdash; Why Choose Us</span>
+                    <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em] mb-10" data-reveal="fade-right">
                         Why How High?
                     </h2>
 
@@ -381,33 +594,39 @@
             </div>
 
             <!-- Stats Row -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 text-center" data-stagger-parent>
-                <div data-stagger-child>
-                    <span class="font-display text-5xl md:text-6xl text-primary" data-counter="500" data-counter-suffix="+">0+</span>
-                    <p class="text-text-secondary mt-2 uppercase text-sm tracking-wider">Projects Completed</p>
-                </div>
-                <div data-stagger-child>
-                    <span class="font-display text-5xl md:text-6xl text-primary" data-counter="15" data-counter-suffix="+">0+</span>
-                    <p class="text-text-secondary mt-2 uppercase text-sm tracking-wider">Years Experience</p>
-                </div>
-                <div data-stagger-child>
-                    <span class="font-display text-5xl md:text-6xl text-primary" data-counter="100" data-counter-suffix="%">0%</span>
-                    <p class="text-text-secondary mt-2 uppercase text-sm tracking-wider">Safety Record</p>
-                </div>
-                <div data-stagger-child>
-                    <span class="font-display text-5xl md:text-6xl text-white">UK</span>
-                    <p class="text-text-secondary mt-2 uppercase text-sm tracking-wider">Wide Coverage</p>
+            <div class="mt-20 pt-16 border-t border-elevated">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center" data-stagger-parent>
+                    <div class="stat-divider" data-stagger-child>
+                        <span class="font-display text-5xl md:text-7xl text-primary stat-glow" data-counter="500" data-counter-suffix="+">0+</span>
+                        <p class="text-text-secondary mt-3 uppercase text-xs tracking-[0.2em]">Projects Completed</p>
+                    </div>
+                    <div class="stat-divider" data-stagger-child>
+                        <span class="font-display text-5xl md:text-7xl text-primary stat-glow" data-counter="15" data-counter-suffix="+">0+</span>
+                        <p class="text-text-secondary mt-3 uppercase text-xs tracking-[0.2em]">Years Experience</p>
+                    </div>
+                    <div class="stat-divider" data-stagger-child>
+                        <span class="font-display text-5xl md:text-7xl text-primary stat-glow" data-counter="100" data-counter-suffix="%">0%</span>
+                        <p class="text-text-secondary mt-3 uppercase text-xs tracking-[0.2em]">Safety Record</p>
+                    </div>
+                    <div data-stagger-child>
+                        <span class="font-display text-5xl md:text-7xl text-white">UK</span>
+                        <p class="text-text-secondary mt-3 uppercase text-xs tracking-[0.2em]">Wide Coverage</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- ========== GALLERY ========== -->
-    <section id="gallery" class="bg-surface py-16 md:py-32 px-4 sm:px-6">
+    <section id="gallery" class="bg-surface py-16 md:py-32 px-4 sm:px-6 bg-amber-glow">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] text-center mb-12" data-reveal="fade-up">
-                Our Work
-            </h2>
+            <div class="text-center mb-12" data-reveal="fade-up">
+                <span class="kicker kicker--center">03 &mdash; Recent Work</span>
+                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em]">
+                    Our Work
+                </h2>
+                <p class="text-text-secondary max-w-xl mx-auto mt-4">A snapshot of the jobs we've delivered &mdash; from family homes to multi-storey commercial sites.</p>
+            </div>
 
             <!-- Filter Tabs -->
             <div class="flex flex-wrap justify-center gap-4 mb-12" data-reveal="fade-up">
@@ -497,7 +716,8 @@
     <!-- ========== VIDEO SHOWCASE ========== -->
     <section class="bg-footer py-12 md:py-32 px-4 sm:px-6">
         <div class="max-w-5xl mx-auto text-center">
-            <h2 class="font-display text-3xl md:text-5xl text-white uppercase tracking-[-0.03em] mb-8 md:mb-12" data-split="words">
+            <span class="kicker kicker--center" data-reveal="fade-up">04 &mdash; On Site</span>
+            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em] mb-8 md:mb-12" data-split="words">
                 See Us In Action
             </h2>
             <div class="relative rounded-xl overflow-hidden shadow-2xl shadow-primary/10" data-reveal="zoom">
@@ -506,7 +726,8 @@
                 </video>
                 <!-- Play Button Overlay -->
                 <div id="video-play-btn" class="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer transition-opacity duration-300 hover:bg-black/20" onclick="playShowcase()">
-                    <div class="w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/30 hover:bg-primary-hover transition-colors duration-300 active:scale-95">
+                    <div class="relative w-20 h-20 md:w-24 md:h-24 rounded-full bg-primary flex items-center justify-center shadow-lg shadow-primary/40 hover:bg-primary-hover transition-colors duration-300 active:scale-95">
+                        <span class="play-ring"></span>
                         <svg class="w-8 h-8 md:w-10 md:h-10 text-base ml-1" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -519,11 +740,20 @@
     <!-- ========== REVIEWS CTA ========== -->
     <section class="py-16 md:py-32 px-4 sm:px-6">
         <div class="max-w-3xl mx-auto text-center">
-            <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] mb-6" data-reveal="fade-up">
+            <span class="kicker kicker--center" data-reveal="fade-up">05 &mdash; Reviews</span>
+            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em] mb-6" data-reveal="fade-up">
                 Trusted by Clients Across the UK
             </h2>
+            <div class="flex items-center justify-center gap-2 mb-6" data-reveal="fade-up" aria-label="5 star rated">
+                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z"/></svg>
+                <span class="ml-2 text-text-secondary text-sm uppercase tracking-wider">5.0 &middot; Facebook Reviews</span>
+            </div>
             <p class="text-text-secondary text-lg leading-[1.7] mb-10 max-w-xl mx-auto" data-reveal="fade-up">
-                Don't just take our word for it — see what our customers have to say on Facebook.
+                Don't just take our word for it &mdash; see what our customers have to say on Facebook.
             </p>
             <a href="https://web.facebook.com/profile.php?id=100095144231350" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-surface hover:bg-elevated border border-elevated hover:border-primary text-white font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300 shadow-lg shadow-primary/10" data-magnetic data-reveal="fade-up">
                 <svg class="w-5 h-5 text-primary" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
@@ -533,11 +763,15 @@
     </section>
 
     <!-- ========== CONTACT / QUOTE FORM ========== -->
-    <section id="contact" class="bg-[#111111] py-16 md:py-32 px-4 sm:px-6">
+    <section id="contact" class="bg-[#111111] py-16 md:py-32 px-4 sm:px-6 bg-amber-glow">
         <div class="max-w-7xl mx-auto">
-            <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] text-center mb-16" data-reveal="fade-up">
-                Get a Free Quote
-            </h2>
+            <div class="text-center mb-16" data-reveal="fade-up">
+                <span class="kicker kicker--center">06 &mdash; Get In Touch</span>
+                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em]">
+                    Get a Free Quote
+                </h2>
+                <p class="text-text-secondary max-w-xl mx-auto mt-4">No obligation. Most quotes back within 24 hours. For emergencies, just call.</p>
+            </div>
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 <!-- Left: Form -->
                 <div>
@@ -550,15 +784,15 @@
                         <input type="text" name="_honey" style="display:none">
                         <div class="mb-6">
                             <label for="name" class="block text-text-secondary text-sm uppercase tracking-wider mb-2">Name *</label>
-                            <input type="text" id="name" name="name" required class="w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors duration-300" placeholder="Your full name">
+                            <input type="text" id="name" name="name" required class="form-input w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:outline-none" placeholder="Your full name">
                         </div>
                         <div class="mb-6">
                             <label for="phone" class="block text-text-secondary text-sm uppercase tracking-wider mb-2">Phone *</label>
-                            <input type="tel" id="phone" name="phone" required class="w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors duration-300" placeholder="Your phone number">
+                            <input type="tel" id="phone" name="phone" required class="form-input w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:outline-none" placeholder="Your phone number">
                         </div>
                         <div class="mb-6">
                             <label for="email" class="block text-text-secondary text-sm uppercase tracking-wider mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors duration-300" placeholder="Your email address">
+                            <input type="email" id="email" name="email" class="form-input w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:outline-none" placeholder="Your email address">
                         </div>
                         <div class="mb-6">
                             <label for="service" class="block text-text-secondary text-sm uppercase tracking-wider mb-2">Service Required</label>
@@ -573,7 +807,7 @@
                         </div>
                         <div class="mb-8">
                             <label for="details" class="block text-text-secondary text-sm uppercase tracking-wider mb-2">Project Details</label>
-                            <textarea id="details" name="details" rows="5" class="w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors duration-300 resize-none" placeholder="Tell us about your project..."></textarea>
+                            <textarea id="details" name="details" rows="5" class="form-input w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:outline-none resize-none" placeholder="Tell us about your project..."></textarea>
                         </div>
                         <button type="submit" id="submitBtn" class="w-full bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest py-4 rounded transition-colors duration-300 shadow-lg shadow-primary/20" data-magnetic>
                             Send via WhatsApp
@@ -641,9 +875,12 @@
     <!-- ========== FAQ ========== -->
     <section id="faq" class="py-24 md:py-32 px-6">
         <div class="max-w-3xl mx-auto">
-            <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] text-center mb-16" data-reveal="fade-up">
-                Frequently Asked Questions
-            </h2>
+            <div class="text-center mb-16" data-reveal="fade-up">
+                <span class="kicker kicker--center">07 &mdash; FAQ</span>
+                <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em]">
+                    Frequently Asked Questions
+                </h2>
+            </div>
             <div class="space-y-4" data-stagger-parent>
                 <div class="faq-item bg-surface rounded-lg border border-elevated overflow-hidden" data-stagger-child>
                     <button class="faq-toggle w-full flex items-center justify-between p-6 text-left cursor-pointer" aria-expanded="false">
@@ -975,17 +1212,20 @@
             btn.addEventListener('click', () => {
                 const answer = btn.nextElementSibling;
                 const icon = btn.querySelector('.faq-icon');
+                const item = btn.closest('.faq-item');
                 const isOpen = !answer.classList.contains('hidden');
 
                 // Close all others
                 document.querySelectorAll('.faq-answer').forEach(a => a.classList.add('hidden'));
                 document.querySelectorAll('.faq-icon').forEach(i => i.style.transform = '');
                 document.querySelectorAll('.faq-toggle').forEach(t => t.setAttribute('aria-expanded', 'false'));
+                document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('is-open'));
 
                 if (!isOpen) {
                     answer.classList.remove('hidden');
                     icon.style.transform = 'rotate(180deg)';
                     btn.setAttribute('aria-expanded', 'true');
+                    item && item.classList.add('is-open');
                 }
             });
         });

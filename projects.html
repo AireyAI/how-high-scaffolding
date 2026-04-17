@@ -165,6 +165,74 @@
             break-inside: avoid;
             margin-bottom: 1rem;
         }
+
+        /* ─── POLISH UPGRADES (shared with home.html) ─── */
+        .kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            color: #E87A1E;
+            margin-bottom: 18px;
+        }
+        .kicker::before {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: #E87A1E;
+            display: inline-block;
+        }
+        .kicker--center { justify-content: center; }
+        .kicker--center::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: #E87A1E;
+            display: inline-block;
+        }
+
+        /* Gallery item hover glow */
+        .masonry-item > div {
+            transition: box-shadow 0.4s ease;
+        }
+        .masonry-item > div:hover {
+            box-shadow: 0 0 0 1px rgba(232,122,30,0.5), 0 16px 40px -10px rgba(232,122,30,0.3);
+        }
+
+        /* CTA banner amber glow background */
+        .bg-amber-glow {
+            position: relative;
+            isolation: isolate;
+        }
+        .bg-amber-glow::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 50% 50%, rgba(232,122,30,0.10), transparent 60%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Stat divider for hero badges */
+        .badge-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(232,122,30,0.08);
+            border: 1px solid rgba(232,122,30,0.25);
+            color: #E87A1E;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body class="grain">
@@ -235,18 +303,16 @@
         </div>
 
         <div class="relative z-10 max-w-7xl mx-auto px-6 text-center">
+            <span class="kicker kicker--center" data-appear data-appear-delay="0">Portfolio</span>
             <h1 class="font-display text-5xl md:text-7xl lg:text-8xl text-white uppercase tracking-[-0.03em] mb-6" data-split="words">Completed Projects</h1>
-            <p class="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto mb-8" data-appear data-appear-delay="0.3">
-                Over 500 projects delivered safely across the UK. From residential homes to large-scale commercial builds — here's a look at our work.
+            <p class="text-text-secondary text-lg md:text-xl max-w-2xl mx-auto mb-10" data-appear data-appear-delay="0.3">
+                Over 500 projects delivered safely across the UK. From residential homes to large-scale commercial builds &mdash; here's a look at our work.
             </p>
-            <div class="flex items-center justify-center gap-8 text-sm uppercase tracking-wider" data-appear data-appear-delay="0.5">
-                <span class="text-primary font-semibold"><span data-counter="64" data-counter-suffix="+">0</span> Photos</span>
-                <span class="w-1 h-1 rounded-full bg-text-secondary"></span>
-                <span class="text-text-secondary">Residential</span>
-                <span class="w-1 h-1 rounded-full bg-text-secondary"></span>
-                <span class="text-text-secondary">Commercial</span>
-                <span class="w-1 h-1 rounded-full bg-text-secondary"></span>
-                <span class="text-text-secondary">Specialist</span>
+            <div class="flex flex-wrap items-center justify-center gap-3" data-appear data-appear-delay="0.5">
+                <span class="badge-pill"><span data-counter="64" data-counter-suffix="+">0+</span> Photos</span>
+                <span class="badge-pill" style="background:transparent; color:#A0A0A0; border-color: rgba(160,160,160,0.2);">Residential</span>
+                <span class="badge-pill" style="background:transparent; color:#A0A0A0; border-color: rgba(160,160,160,0.2);">Commercial</span>
+                <span class="badge-pill" style="background:transparent; color:#A0A0A0; border-color: rgba(160,160,160,0.2);">Specialist</span>
             </div>
         </div>
     </section>
@@ -640,12 +706,13 @@
     </main>
 
     <!-- ========== CTA BANNER ========== -->
-    <section class="bg-surface py-16 md:py-24 px-6">
+    <section class="bg-surface py-16 md:py-24 px-6 bg-amber-glow">
         <div class="max-w-4xl mx-auto text-center" data-reveal="fade-up">
-            <h2 class="font-display text-4xl md:text-5xl text-white uppercase tracking-[-0.03em] mb-6">Ready to Start Your Project?</h2>
-            <p class="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">Whether it's a residential scaffold, commercial build, or specialist access — we'll get you sorted. Get in touch for a free, no-obligation quote.</p>
+            <span class="kicker kicker--center">Next Step</span>
+            <h2 class="font-display text-4xl md:text-5xl lg:text-6xl text-white uppercase tracking-[-0.03em] mb-6">Ready to Start Your Project?</h2>
+            <p class="text-text-secondary text-lg mb-10 max-w-2xl mx-auto">Whether it's a residential scaffold, commercial build, or specialist access &mdash; we'll get you sorted. Get in touch for a free, no-obligation quote.</p>
             <div class="flex flex-wrap gap-4 justify-center">
-                <a href="home.html#contact" class="bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300" data-magnetic>Get a Free Quote</a>
+                <a href="home.html#contact" class="bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300 shadow-lg shadow-primary/30" data-magnetic>Get a Free Quote</a>
                 <a href="tel:07944362960" class="border-2 border-white text-white hover:border-primary hover:text-primary font-semibold uppercase tracking-widest px-8 py-4 rounded transition-colors duration-300" data-magnetic>Call 07944 362 960</a>
             </div>
         </div>

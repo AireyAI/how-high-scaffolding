@@ -79,35 +79,66 @@
         .overlay.visible {
             opacity: 1;
             pointer-events: auto;
-            background: radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+            background:
+                radial-gradient(ellipse at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 55%, transparent 95%),
+                radial-gradient(ellipse 80% 60% at 50% 100%, rgba(232,122,30,0.18), transparent 70%);
         }
 
         .overlay-logo {
             width: 120px;
             height: auto;
             margin-bottom: 24px;
-            filter: drop-shadow(0 0 40px rgba(232, 122, 30, 0.3));
+            filter: drop-shadow(0 0 40px rgba(232, 122, 30, 0.35));
+        }
+
+        .overlay-kicker {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.4em;
+            text-transform: uppercase;
+            color: #E87A1E;
+            margin-bottom: 18px;
+            opacity: 0.95;
+        }
+        .overlay-kicker::before,
+        .overlay-kicker::after {
+            content: '';
+            width: 28px;
+            height: 1px;
+            background: rgba(232,122,30,0.6);
+            display: inline-block;
         }
 
         .overlay-title {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(2.5rem, 6vw, 5rem);
             color: #FFFFFF;
-            letter-spacing: 0.15em;
+            letter-spacing: 0.12em;
             text-align: center;
             line-height: 1.1;
-            text-shadow: 0 0 60px rgba(232, 122, 30, 0.2), 0 2px 30px rgba(0,0,0,0.9);
+            text-shadow: 0 0 60px rgba(232, 122, 30, 0.25), 0 2px 30px rgba(0,0,0,0.9);
         }
 
         .overlay-subtitle {
             font-family: 'Inter', sans-serif;
             font-size: clamp(0.85rem, 1.5vw, 1.1rem);
             color: #D0D0D0;
-            margin-top: 12px;
-            letter-spacing: 0.2em;
+            margin-top: 14px;
+            letter-spacing: 0.25em;
             text-transform: uppercase;
             text-align: center;
             text-shadow: 0 2px 20px rgba(0,0,0,0.8);
+        }
+        .overlay-subtitle::before,
+        .overlay-subtitle::after {
+            content: '\00b7';
+            color: #E87A1E;
+            margin: 0 12px;
+            opacity: 0.6;
         }
 
         .enter-btn {
@@ -286,6 +317,7 @@
 
         <div class="overlay" id="overlay">
             <img src="brand_assets/logo.png" alt="How High Scaffolding" class="overlay-logo">
+            <span class="overlay-kicker">Est. Carlisle &middot; UK&#8209;Wide</span>
             <h1 class="overlay-title">How High Scaffolding</h1>
             <p class="overlay-subtitle">Built to Reach Any Height</p>
             <a href="home.html" class="enter-btn" id="enterBtn" onclick="navigateToSite(event)">
