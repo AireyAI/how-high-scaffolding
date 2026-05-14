@@ -6,7 +6,7 @@ Single-page marketing website for How High Scaffolding, a Carlisle-based scaffol
 ## Business Details
 - **Name:** How High Scaffolding
 - **Location:** Carlisle, UK-wide coverage
-- **Phone:** 07944362960
+- **Phone:** 07542516952
 - **Services:** Residential scaffolding, commercial scaffolding, safety netting, shrink wrapping, permanent handrails (tin roofs for solar)
 - **Logo:** HH scaffolding structure logo (provided, black on white — will invert to white on dark)
 

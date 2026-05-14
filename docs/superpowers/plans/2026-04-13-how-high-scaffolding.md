@@ -210,7 +210,7 @@ Inside `<body>`, write the fixed navigation:
 - `<nav>` with `fixed top-0 w-full z-50` and a transparent background that transitions to `bg-base` on scroll via a small inline JS snippet
 - Left: `<img src="brand_assets/logo.png" style="filter:invert(1)" class="h-10">` linked to `#`
 - Center: four anchor links — Services (`#services`), About (`#about`), Gallery (`#gallery`), Contact (`#contact`) — styled white, uppercase, Inter 500, with hover underline in amber
-- Right: phone link `<a href="tel:07944362960">07944 362 960</a>` + "Get a Quote" button (`bg-primary text-base font-semibold uppercase tracking-wider px-6 py-3 rounded`) linking to `#contact`
+- Right: phone link `<a href="tel:07542516952">07542 516952</a>` + "Get a Quote" button (`bg-primary text-base font-semibold uppercase tracking-wider px-6 py-3 rounded`) linking to `#contact`
 - Mobile hamburger: hidden above `lg:`, toggles a full-screen overlay with the same links stacked vertically. Small inline JS to toggle a `.mobile-menu-open` class.
 
 - [ ] **Step 3: Add the hero section**
@@ -225,7 +225,7 @@ After `</nav>`, write the hero `<section id="hero">`:
   - Subtitle: `<p class="font-body text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10" data-appear data-appear-delay="0.4">Scaffolding, Safety Netting & Specialist Access Solutions — Carlisle to Nationwide</p>`
   - CTAs: two buttons side by side in a flex-wrap container
     - "Get a Free Quote": `<a href="#contact" class="bg-primary text-base font-semibold uppercase tracking-widest px-8 py-4 rounded inline-block" data-magnetic>Get a Free Quote</a>`
-    - "Call Now": `<a href="tel:07944362960" class="border-2 border-white text-white font-semibold uppercase tracking-widest px-8 py-4 rounded inline-block ml-4" data-magnetic>Call Now</a>`
+    - "Call Now": `<a href="tel:07542516952" class="border-2 border-white text-white font-semibold uppercase tracking-widest px-8 py-4 rounded inline-block ml-4" data-magnetic>Call Now</a>`
     - Both with `data-appear data-appear-delay="0.6"` and `data-appear-delay="0.8"` respectively
 
 - [ ] **Step 4: Start server and screenshot**
@@ -593,9 +593,9 @@ Right (contact info):
   <div>
     <h3 class="font-display text-2xl text-white uppercase mb-4">Get In Touch</h3>
     <div class="space-y-4">
-      <a href="tel:07944362960" class="flex items-center gap-3 text-text-secondary hover:text-primary transition-colors">
+      <a href="tel:07542516952" class="flex items-center gap-3 text-text-secondary hover:text-primary transition-colors">
         <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
-        07944 362 960
+        07542 516952
       </a>
       <p class="flex items-center gap-3 text-text-secondary">
         <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
@@ -659,7 +659,7 @@ After contact `</section>`, before the scripts, add:
         <a href="#gallery" class="hover:text-primary transition-colors">Gallery</a>
         <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
       </nav>
-      <a href="tel:07944362960" class="text-primary hover:text-primary-hover transition-colors font-semibold">07944 362 960</a>
+      <a href="tel:07542516952" class="text-primary hover:text-primary-hover transition-colors font-semibold">07542 516952</a>
     </div>
     <div class="mt-8 pt-8 border-t border-elevated flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-text-secondary">
       <p>&copy; 2026 How High Scaffolding. All rights reserved.</p>
@@ -790,7 +790,7 @@ Using Playwright MCP tools:
 
 - [ ] **Step 4: Test click-to-call**
 
-- Verify `tel:07944362960` links are present in nav, hero, and contact section
+- Verify `tel:07542516952` links are present in nav, hero, and contact section
 
 ---
 
