@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Review Moderation · How High Scaffolding Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { background:#0A0A0A; color:#EDEDED; font-family:'Inter',sans-serif; -webkit-font-smoothing:antialiased; line-height:1.6; margin:0; }
+  h1, h2, h3 { font-family:'Bebas Neue', Impact, sans-serif; letter-spacing:0.01em; line-height:0.95; }
+  .text-mute { color:#9A9A9E; }
+  .text-orange { color:#E87A1E; }
+  .border-edge { border-color:#262626; }
+  .bg-carbon { background:#141414; }
+  .bg-ink { background:#0A0A0A; }
+  .font-display { font-family:'Bebas Neue', Impact, sans-serif; }
+  .font-mono { font-family:'JetBrains Mono', monospace; }
+  .btn { display:inline-flex; align-items:center; gap:0.5rem; padding:10px 18px; border-radius:999px; font-weight:600; font-size:13px; cursor:pointer; border:1.5px solid #262626; background:transparent; color:#EDEDED; transition:all 180ms ease; text-decoration:none; }
+  .btn:hover { border-color:#E87A1E; }
+  .btn-orange { background:#E87A1E; border-color:#E87A1E; color:#fff; }
+  .btn-success { background:#2ECC71; border-color:#2ECC71; color:#0A0A0A; }
+  .btn-success:hover { background:#3FD882; border-color:#3FD882; }
+  .btn-danger { background:transparent; border-color:#E53935; color:#E53935; }
+  .btn-danger:hover { background:#E53935; color:#fff; }
+  .btn-google { background:#fff; color:#1f1f1f; border-color:#fff; gap:0.75rem; padding:14px 22px; font-size:15px; }
+  .btn-google:hover { background:#f1f1f1; border-color:#f1f1f1; }
+  .card { background:#141414; border:1px solid #262626; border-radius:16px; padding:24px; }
+  .badge { font-family:'JetBrains Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.15em; padding:4px 10px; border-radius:999px; border:1px solid #262626; color:#9A9A9E; }
+  .badge.pending { background:rgba(232,122,30,0.1); border-color:#E87A1E; color:#E87A1E; }
+  .badge.approved { background:rgba(46,204,113,0.1); border-color:#2ECC71; color:#2ECC71; }
+  .badge.rejected { background:rgba(229,57,53,0.1); border-color:#E53935; color:#E53935; }
+  .tab { padding:10px 18px; border-radius:999px; font-size:13px; font-weight:600; cursor:pointer; background:#141414; border:1px solid #262626; color:#EDEDED; transition:all 180ms ease; }
+  .tab:hover { border-color:#E87A1E; }
+  .tab.active { background:#E87A1E; border-color:#E87A1E; color:#fff; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN GATE — Google OAuth (no passwords) -->
+<div id="gate" class="min-h-screen flex items-center justify-center p-6">
+  <div class="card w-full max-w-md text-center">
+    <div class="flex items-center gap-3 mb-6 justify-center">
+      <div class="w-12 h-12 rounded-full bg-orange/20 border border-orange flex items-center justify-center font-display text-2xl text-orange">HH</div>
+      <div class="text-left">
+        <div class="font-display text-xl uppercase tracking-wider">How <span class="text-orange">High</span></div>
+        <div class="font-mono text-[10px] uppercase tracking-widest text-mute">Admin · Review Moderation</div>
+      </div>
+    </div>
+    <p class="text-mute mb-6">Sign in with the Google account registered as the owner of this site.</p>
+    <button onclick="signInWithGoogle()" class="btn btn-google w-full justify-center">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3c-1.6 4.7-6.1 8-11.3 8-6.6 0-12-5.4-12-12s5.4-12 12-12c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 12.95 4 4 12.95 4 24s8.95 20 20 20 20-8.95 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="M6.3 14.7l6.6 4.8C14.6 16 18.9 13 24 13c3 0 5.8 1.1 7.9 3l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2c-2 1.5-4.5 2.4-7.2 2.4-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.3-2.3 4.3-4.1 5.6l6.2 5.2C41.3 35.9 44 30.4 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>
+      Sign in with Google
+    </button>
+    <div id="gateErr" class="hidden text-sm text-[#E53935] mt-4"></div>
+    <p class="mt-6 text-[11px] text-mute font-mono uppercase tracking-widest">Owner email is on the AireyAI server allowlist</p>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dash" class="hidden">
+  <header class="border-b border-edge px-6 md:px-10 py-5 flex items-center justify-between sticky top-0 bg-ink/95 backdrop-blur z-20">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-orange/20 border border-orange flex items-center justify-center font-display text-orange">HH</div>
+      <div>
+        <h1 class="text-xl uppercase tracking-wider">How <span class="text-orange">High</span> Scaffolding</h1>
+        <div class="font-mono text-[10px] uppercase tracking-widest text-mute">Review Moderation · <span id="signedInAs" class="text-orange"></span></div>
+      </div>
+    </div>
+    <div class="flex items-center gap-3">
+      <a href="../home.html" target="_blank" class="btn">View site</a>
+      <button onclick="logout()" class="btn">Sign out</button>
+    </div>
+  </header>
+
+  <div id="statusBar" class="px-6 md:px-10 py-3 bg-carbon border-b border-edge text-sm flex items-center gap-3">
+    <span id="statusDot" class="w-2 h-2 rounded-full bg-mute"></span>
+    <span id="statusText" class="text-mute font-mono uppercase tracking-widest text-[11px]">Checking Aria connection…</span>
+    <button onclick="loadAll()" class="ml-auto text-orange text-xs font-mono uppercase tracking-widest hover:underline">Refresh</button>
+  </div>
+
+  <div class="max-w-[1440px] mx-auto px-6 md:px-10 py-10">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
+      <div class="card"><div class="text-xs uppercase tracking-widest text-mute font-mono mb-2">Pending</div><div class="font-display text-5xl text-orange leading-none" id="statPending">0</div></div>
+      <div class="card"><div class="text-xs uppercase tracking-widest text-mute font-mono mb-2">Approved</div><div class="font-display text-5xl text-[#2ECC71] leading-none" id="statApproved">0</div></div>
+      <div class="card"><div class="text-xs uppercase tracking-widest text-mute font-mono mb-2">Rejected</div><div class="font-display text-5xl text-[#E53935] leading-none" id="statRejected">0</div></div>
+      <div class="card"><div class="text-xs uppercase tracking-widest text-mute font-mono mb-2">Total Public</div><div class="font-display text-5xl leading-none" id="statTotal">0</div></div>
+    </div>
+
+    <div class="flex flex-wrap gap-2 mb-6" role="tablist">
+      <button class="tab active" data-tab="pending">Pending <span class="opacity-70" id="tabPendingCount">0</span></button>
+      <button class="tab" data-tab="approved">Approved <span class="opacity-70" id="tabApprovedCount">0</span></button>
+      <button class="tab" data-tab="rejected">Rejected <span class="opacity-70" id="tabRejectedCount">0</span></button>
+    </div>
+
+    <div id="emptyState" class="hidden card text-center py-16">
+      <div class="font-display text-4xl uppercase text-orange mb-3">All caught up.</div>
+      <p class="text-mute">No reviews in this queue.</p>
+    </div>
+
+    <div id="reviewsList" class="space-y-4"></div>
+  </div>
+
+  <footer class="border-t border-edge px-6 md:px-10 py-5 text-xs font-mono uppercase tracking-widest text-mute">
+    <div class="max-w-[1440px] mx-auto flex flex-col md:flex-row justify-between gap-2">
+      <div>© <span id="year"></span> How High Scaffolding · Admin</div>
+      <div>Endpoint: <span class="text-orange break-all" id="endpointDisplay"></span></div>
+    </div>
+  </footer>
+</div>
+
+<script>
+// CONFIG ────────────────────────────────────────────────────────
+const SLUG = 'howhighscaffolding';
+const ARIA_BASE = 'https://aria-chatbot-production-12d0.up.railway.app';
+const ARIA_ENDPOINT = `${ARIA_BASE}/api/reviews/${SLUG}`;
+const TOKEN_STORAGE_KEY = `aria_token_${SLUG}`;
+
+document.getElementById('endpointDisplay').textContent = ARIA_ENDPOINT;
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// AUTH ──────────────────────────────────────────────────────────
+// Capture the signed token from the OAuth callback URL fragment.
+// Fragments aren't sent in HTTP requests, so the token never lands in
+// server logs or the Referer header.
+(function captureTokenFromHash() {
+  const hash = location.hash.replace(/^#/, '');
+  if (!hash) return;
+  const params = new URLSearchParams(hash);
+  const token = params.get('aria_token');
+  if (token) {
+    sessionStorage.setItem(TOKEN_STORAGE_KEY, token);
+    history.replaceState(null, '', location.pathname + location.search);
+  }
+})();
+
+function getToken() { return sessionStorage.getItem(TOKEN_STORAGE_KEY) || ''; }
+
+function signInWithGoogle() {
+  const returnTo = location.origin + location.pathname;
+  location.href = `${ARIA_BASE}/auth/admin/start?slug=${encodeURIComponent(SLUG)}&return_to=${encodeURIComponent(returnTo)}`;
+}
+
+function logout() { sessionStorage.removeItem(TOKEN_STORAGE_KEY); location.reload(); }
+
+async function checkAuthAndStart() {
+  if (!getToken()) return;
+  try {
+    const res = await fetch(`${ARIA_BASE}/auth/admin/whoami?slug=${encodeURIComponent(SLUG)}`, {
+      headers: { 'X-Aria-Token': getToken() },
+    });
+    if (!res.ok) { sessionStorage.removeItem(TOKEN_STORAGE_KEY); return; }
+    const data = await res.json();
+    document.getElementById('signedInAs').textContent = data.email;
+    document.getElementById('gate').classList.add('hidden');
+    document.getElementById('dash').classList.remove('hidden');
+    loadAll();
+  } catch (_) { /* network error — stay on gate */ }
+}
+checkAuthAndStart();
+
+// DATA ──────────────────────────────────────────────────────────
+let state = { pending: [], approved: [], rejected: [], ariaOnline: false };
+let activeTab = 'pending';
+
+async function loadAll() {
+  setStatus('loading', 'Fetching from Aria…');
+  try {
+    const res = await fetch(ARIA_ENDPOINT + '?all=1', { headers: { 'X-Aria-Token': getToken() } });
+    if (res.status === 401) { sessionStorage.removeItem(TOKEN_STORAGE_KEY); location.reload(); return; }
+    if (!res.ok) throw new Error('bad status ' + res.status);
+    const data = await res.json();
+    state.pending  = (data.reviews || []).filter(r => !r.approved && !r.rejected);
+    state.approved = (data.reviews || []).filter(r =>  r.approved);
+    state.rejected = (data.reviews || []).filter(r =>  r.rejected);
+    state.ariaOnline = true;
+    setStatus('ok', `Aria online · ${(data.reviews || []).length} records`);
+  } catch (e) {
+    state.pending = []; state.approved = []; state.rejected = [];
+    state.ariaOnline = false;
+    setStatus('err', 'Aria offline — ' + e.message);
+  }
+  paint();
+}
+
+function setStatus(kind, txt) {
+  const colors = { loading:'bg-mute', ok:'bg-[#2ECC71]', err:'bg-[#E53935]' };
+  document.getElementById('statusDot').className = 'w-2 h-2 rounded-full ' + (colors[kind] || 'bg-mute');
+  document.getElementById('statusText').textContent = txt;
+}
+
+function paint() {
+  document.getElementById('statPending').textContent  = state.pending.length;
+  document.getElementById('statApproved').textContent = state.approved.length;
+  document.getElementById('statRejected').textContent = state.rejected.length;
+  document.getElementById('statTotal').textContent    = state.approved.length;
+  document.getElementById('tabPendingCount').textContent  = `(${state.pending.length})`;
+  document.getElementById('tabApprovedCount').textContent = `(${state.approved.length})`;
+  document.getElementById('tabRejectedCount').textContent = `(${state.rejected.length})`;
+  renderList();
+}
+
+// LIST RENDER ───────────────────────────────────────────────────
+// All review fields (name, email, text, service) come from public form
+// submissions. Built via DOM API + textContent so the user-supplied
+// strings can never become executable HTML.
+function makeStarSvg() {
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', '14'); svg.setAttribute('height', '14');
+  svg.setAttribute('viewBox', '0 0 24 24'); svg.setAttribute('fill', '#E87A1E');
+  const p = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+  p.setAttribute('d', 'M12 2l2.9 6.9L22 10l-5 4.8L18.2 22 12 18.3 5.8 22 7 14.8 2 10l7.1-1.1z');
+  svg.appendChild(p);
+  return svg;
+}
+
+function el(tag, opts) {
+  const e = document.createElement(tag);
+  if (opts && opts.class) e.className = opts.class;
+  if (opts && opts.text != null) e.textContent = String(opts.text);
+  return e;
+}
+
+function reviewCard(r, idx) {
+  const article = el('article', { class: 'card' });
+  // Header row
+  const headerRow = el('div', { class: 'flex items-start justify-between gap-4 mb-4 flex-wrap' });
+  const left = el('div');
+  const idRow = el('div', { class: 'flex items-center gap-3 mb-2' });
+  const avatar = el('div', { class: 'w-10 h-10 rounded-full bg-orange/20 border border-orange flex items-center justify-center font-display text-lg', text: String((r.name || '?')[0]).toUpperCase() });
+  const idStack = el('div');
+  idStack.appendChild(el('div', { class: 'font-semibold', text: r.name || 'Anonymous' }));
+  idStack.appendChild(el('div', { class: 'font-mono text-[10px] uppercase tracking-widest text-mute', text: r.email || '—' }));
+  idRow.appendChild(avatar); idRow.appendChild(idStack);
+  left.appendChild(idRow);
+  const starsBox = el('div', { class: 'flex gap-1' });
+  for (let i = 0; i < (r.rating || 5); i++) starsBox.appendChild(makeStarSvg());
+  left.appendChild(starsBox);
+  headerRow.appendChild(left);
+
+  const badges = el('div', { class: 'flex gap-2 flex-wrap items-start' });
+  badges.appendChild(el('span', { class: `badge ${activeTab}`, text: activeTab }));
+  if (r.service) badges.appendChild(el('span', { class: 'badge', text: r.service }));
+  badges.appendChild(el('span', { class: 'badge', text: r.date || r.submittedAt || 'Just now' }));
+  headerRow.appendChild(badges);
+  article.appendChild(headerRow);
+
+  // Body
+  article.appendChild(el('p', { class: 'text-bone/90 leading-relaxed mb-5', text: r.text || '' }));
+
+  // Actions
+  const actions = el('div', { class: 'flex gap-2 flex-wrap pt-4 border-t border-edge' });
+  const id = String(r.id != null ? r.id : idx);
+  if (activeTab === 'pending') {
+    const a = el('button', { class: 'btn btn-success', text: '✓ Approve' });
+    a.addEventListener('click', () => approve(id));
+    const x = el('button', { class: 'btn btn-danger', text: '✕ Reject' });
+    x.addEventListener('click', () => reject(id));
+    actions.appendChild(a); actions.appendChild(x);
+  } else if (activeTab === 'approved') {
+    const x = el('button', { class: 'btn btn-danger', text: 'Unpublish' });
+    x.addEventListener('click', () => reject(id));
+    actions.appendChild(x);
+  } else {
+    const a = el('button', { class: 'btn btn-success', text: 'Restore' });
+    a.addEventListener('click', () => approve(id));
+    actions.appendChild(a);
+  }
+  article.appendChild(actions);
+  return article;
+}
+
+function renderList() {
+  const list = state[activeTab] || [];
+  const root = document.getElementById('reviewsList');
+  const empty = document.getElementById('emptyState');
+  root.replaceChildren();
+  if (!list.length) { empty.classList.remove('hidden'); return; }
+  empty.classList.add('hidden');
+  list.forEach((r, i) => root.appendChild(reviewCard(r, i)));
+}
+
+document.querySelectorAll('.tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    activeTab = tab.dataset.tab;
+    document.querySelectorAll('.tab').forEach(t => t.classList.toggle('active', t === tab));
+    renderList();
+  });
+});
+
+// ACTIONS ───────────────────────────────────────────────────────
+async function postAction(id, action) {
+  if (!state.ariaOnline) { alert('Aria is offline — cannot ' + action + '. Try Refresh first.'); return; }
+  try {
+    const res = await fetch(ARIA_ENDPOINT + '/' + encodeURIComponent(id), {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'X-Aria-Token': getToken() },
+      body: JSON.stringify({ action }),
+    });
+    if (res.status === 401) { sessionStorage.removeItem(TOKEN_STORAGE_KEY); location.reload(); return; }
+    if (!res.ok) throw new Error('bad status');
+    await loadAll();
+  } catch (e) { alert('Action failed — please try again.'); }
+}
+function approve(id) { postAction(id, 'approve'); }
+function reject(id)  { postAction(id, 'reject'); }
+</script>
+</body>
+</html>
