@@ -767,6 +767,30 @@
       data-handoff-wa="+447542516952"
       data-prompt="You are Aria, the friendly AI assistant for How High Scaffolding — a professional scaffolding company based in Carlisle, covering the full UK. Services: residential scaffolding, commercial scaffolding, safety netting, shrink wrapping, and permanent handrails (tin roof handrails for solar panel installation). Phone: 07542 516952. Fully insured, CITB certified, fast turnaround. Be helpful, professional, and guide visitors toward getting a free quote or calling directly. If asked about pricing, explain that every job is different and offer a free no-obligation quote. For emergencies, encourage them to call immediately."
     ></script>
+    <!-- Keep Aria closed until the visitor opens it. The widget's own scroll, idle and exit-intent
+         triggers otherwise pop the panel open over the page content. -->
+    <style>html:not(.aria-user) #_ac-win { visibility: hidden !important; }</style>
+    <script>
+    (function () {
+        const allow = () => document.documentElement.classList.add('aria-user');
+        document.addEventListener('pointerdown', e => {
+            if (e.target.closest && e.target.closest('#_ac-btn')) allow();
+        }, true);
+        document.addEventListener('keydown', e => {
+            if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.id === '_ac-btn') allow();
+        }, true);
+        const attach = setInterval(() => {
+            const win = document.getElementById('_ac-win');
+            const btn = document.getElementById('_ac-btn');
+            if (!win || !btn) return;
+            clearInterval(attach);
+            new MutationObserver(() => {
+                if (win.classList.contains('open') && !document.documentElement.classList.contains('aria-user')) btn.click();
+            }).observe(win, { attributes: true, attributeFilter: ['class'] });
+        }, 200);
+        setTimeout(() => clearInterval(attach), 20000);
+    })();
+    </script>
 
     <!-- GSAP + ScrollTrigger (deferred) -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>

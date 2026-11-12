@@ -1023,36 +1023,29 @@
       data-position-bottom="80"
       data-prompt="You are Aria, the friendly AI assistant for How High Scaffolding — a professional scaffolding company based in Carlisle, covering the full UK. Services: residential scaffolding, commercial scaffolding, safety netting, shrink wrapping, and permanent handrails (tin roof handrails for solar panel installation). Phone: 07542 516952. Email: liam@howhighscaffolding.com. Fully insured, CITB certified, fast turnaround. Be helpful, professional, and guide visitors toward getting a free quote or calling directly. If asked about pricing, explain that every job is different and offer a free no-obligation quote. For emergencies, encourage them to call immediately."
     ></script>
-    <!-- Close chatbot on mobile so it doesn't cover the page -->
+    <!-- Keep Aria closed until the visitor opens it. The widget's own scroll, idle and exit-intent
+         triggers otherwise pop the panel open over the page content. -->
+    <style>html:not(.aria-user) #_ac-win { visibility: hidden !important; }</style>
     <script>
-    if (window.innerWidth < 768) {
-        let closedOnce = false;
-        const closeOnMobile = setInterval(() => {
-            const btn = document.querySelector('[aria-label="Open chat"]');
-            const dialog = document.querySelector('[aria-label="Chat with Aria"]');
-            if (btn && dialog && dialog.classList.contains('open')) {
-                btn.click();
-                closedOnce = true;
-            }
-            if (closedOnce) clearInterval(closeOnMobile);
-        }, 300);
-        setTimeout(() => clearInterval(closeOnMobile), 15000);
-
-        // Also watch for re-opens from scroll triggers
-        const observer = new MutationObserver(() => {
-            const dialog = document.querySelector('[aria-label="Chat with Aria"]');
-            const btn = document.querySelector('[aria-label="Open chat"]');
-            if (dialog && dialog.classList.contains('open') && btn && !document.querySelector('[aria-label="Chat with Aria"]:focus-within')) {
-                btn.click();
-            }
-        });
-        setTimeout(() => {
-            const target = document.querySelector('[aria-label="Chat with Aria"]');
-            if (target) observer.observe(target, { attributes: true, attributeFilter: ['class'] });
-        }, 3000);
-        // Stop observing after 30s so user can still open it manually
-        setTimeout(() => observer.disconnect(), 30000);
-    }
+    (function () {
+        const allow = () => document.documentElement.classList.add('aria-user');
+        document.addEventListener('pointerdown', e => {
+            if (e.target.closest && e.target.closest('#_ac-btn')) allow();
+        }, true);
+        document.addEventListener('keydown', e => {
+            if ((e.key === 'Enter' || e.key === ' ') && document.activeElement && document.activeElement.id === '_ac-btn') allow();
+        }, true);
+        const attach = setInterval(() => {
+            const win = document.getElementById('_ac-win');
+            const btn = document.getElementById('_ac-btn');
+            if (!win || !btn) return;
+            clearInterval(attach);
+            new MutationObserver(() => {
+                if (win.classList.contains('open') && !document.documentElement.classList.contains('aria-user')) btn.click();
+            }).observe(win, { attributes: true, attributeFilter: ['class'] });
+        }, 200);
+        setTimeout(() => clearInterval(attach), 20000);
+    })();
     </script>
 
     <!-- ========== SCRIPTS ========== -->
