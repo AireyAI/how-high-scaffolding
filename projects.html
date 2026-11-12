@@ -62,14 +62,14 @@
     </script>
 
     <style>
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: clip; }
 
         body {
             background-color: #0A0A0A;
             color: #FFFFFF;
             font-family: 'Inter', sans-serif;
             line-height: 1.7;
-            overflow-x: hidden;
+            overflow-x: clip;
         }
 
         .grain::before {
@@ -285,7 +285,7 @@
             </div>
 
             <!-- Mobile Hamburger -->
-            <button id="hamburger" class="lg:hidden text-white p-2" aria-label="Toggle menu" aria-expanded="false">
+            <button id="hamburger" class="lg:hidden relative z-50 text-white p-2" aria-label="Toggle menu" aria-expanded="false">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path id="hamburger-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     <path id="hamburger-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -851,16 +851,21 @@
         const hamburgerOpen = document.getElementById('hamburger-open');
         const hamburgerClose = document.getElementById('hamburger-close');
         if (hamburger && mobileMenu) {
-            hamburger.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                hamburgerOpen.classList.toggle('hidden');
-                hamburgerClose.classList.toggle('hidden');
+            const setMenu = open => {
+                mobileMenu.classList.toggle('hidden', !open);
+                hamburgerOpen.classList.toggle('hidden', open);
+                hamburgerClose.classList.toggle('hidden', !open);
+                hamburger.setAttribute('aria-expanded', String(open));
+                document.body.style.overflow = open ? 'hidden' : '';
+            };
+            hamburger.addEventListener('click', () => setMenu(mobileMenu.classList.contains('hidden')));
+            mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
+            document.addEventListener('keydown', e => {
+                if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                    setMenu(false);
+                    hamburger.focus();
+                }
             });
-            mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                hamburgerOpen.classList.remove('hidden');
-                hamburgerClose.classList.add('hidden');
-            }));
         }
 
         // === PAGE TRANSITIONS ===

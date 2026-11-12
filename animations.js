@@ -83,14 +83,21 @@
   function setupTextSplit() {
     document.querySelectorAll('[data-split]').forEach(el => {
       const mode = el.dataset.split || 'chars';
-      const text = el.textContent;
+      // Collapse source indentation/newlines so no empty spans or stray gaps are created
+      const text = el.textContent.replace(/\s+/g, ' ').trim();
       el.style.overflow = 'hidden';
+      // Keep the heading readable as one phrase for screen readers and search engines
+      el.setAttribute('aria-label', text);
+      const esc = t => t.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
       if (mode === 'chars') {
-        el.innerHTML = text.split('').map(c =>
-          c === ' ' ? ' ' : `<span style="display:inline-block">${c}</span>`
-        ).join('');
-        gsap.from(el.querySelectorAll('span'), {
+        // Each word is a nowrap group so lines can only break between words, never mid-word
+        el.innerHTML = text.split(' ').map(word =>
+          `<span aria-hidden="true" style="display:inline-block;white-space:nowrap">${
+            word.split('').map(c => `<span style="display:inline-block">${esc(c)}</span>`).join('')
+          }</span>`
+        ).join(' ');
+        gsap.from(el.querySelectorAll('span span'), {
           y: '110%',
           opacity: 0,
           duration: 0.6,
@@ -100,7 +107,7 @@
         });
       } else if (mode === 'words') {
         el.innerHTML = text.split(' ').map(w =>
-          `<span style="display:inline-block; margin-right:0.25em">${w}</span>`
+          `<span aria-hidden="true" style="display:inline-block; margin-right:0.25em">${esc(w)}</span>`
         ).join('');
         gsap.from(el.querySelectorAll('span'), {
           y: '100%',

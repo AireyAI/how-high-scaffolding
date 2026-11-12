@@ -105,14 +105,14 @@
     </script>
 
     <style>
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: clip; }
 
         body {
             background-color: #0A0A0A;
             color: #FFFFFF;
             font-family: 'Inter', sans-serif;
             line-height: 1.7;
-            overflow-x: hidden;
+            overflow-x: clip;
         }
 
         /* SVG Noise Texture Filter */
@@ -402,7 +402,7 @@
             </div>
 
             <!-- Mobile Hamburger -->
-            <button id="hamburger" class="lg:hidden text-white p-2" aria-label="Toggle menu" aria-expanded="false">
+            <button id="hamburger" class="lg:hidden relative z-50 text-white p-2" aria-label="Toggle menu" aria-expanded="false">
                 <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path id="hamburger-open" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                     <path id="hamburger-close" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -820,6 +820,7 @@
                             <label for="details" class="block text-text-secondary text-sm uppercase tracking-wider mb-2">Project Details</label>
                             <textarea id="details" name="details" rows="5" class="form-input w-full bg-surface border border-elevated rounded px-4 py-3 text-white focus:outline-none resize-none" placeholder="Tell us about your project..."></textarea>
                         </div>
+                        <p id="form-error" role="alert" class="hidden mb-4 rounded border border-red-500/60 bg-red-950/40 px-4 py-3 text-sm text-red-200"></p>
                         <button type="submit" id="submitBtn" class="w-full bg-primary hover:bg-primary-hover active:scale-95 text-base font-semibold uppercase tracking-widest py-4 rounded transition-colors duration-300 shadow-lg shadow-primary/20" data-magnetic>
                             Send via WhatsApp
                         </button>
@@ -828,8 +829,8 @@
                         <svg class="w-16 h-16 text-primary mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
-                        <h3 class="font-display text-3xl text-white uppercase mb-2">Quote Request Opened!</h3>
-                        <p class="text-text-secondary">Complete your message on WhatsApp and we'll get back to you within 24 hours. Or call us directly on <a href="tel:07542516952" class="text-primary hover:text-primary-hover transition-colors duration-300 underline">07542 516952</a>.</p>
+                        <h3 class="font-display text-3xl text-white uppercase mb-2">Quote Request Sent!</h3>
+                        <p class="text-text-secondary">We've received your request and will get back to you within 24 hours. A WhatsApp message has also opened if you'd like to add photos. Or call us directly on <a href="tel:07542516952" class="text-primary hover:text-primary-hover transition-colors duration-300 underline">07542 516952</a>.</p>
                     </div>
                 </div>
 
@@ -1108,6 +1109,14 @@
             });
         });
 
+        // Close mobile menu with Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && !mobileMenu.classList.contains('hidden')) {
+                hamburger.click();
+                hamburger.focus();
+            }
+        });
+
         // === GALLERY FILTER ===
         const filterBtns = document.querySelectorAll('.gallery-filter');
         const galleryItems = document.querySelectorAll('.gallery-item');
@@ -1186,12 +1195,13 @@
             window.history.replaceState({}, '', window.location.pathname);
         }
 
-        function handleSubmit(event) {
+        async function handleSubmit(event) {
             event.preventDefault();
             const form = document.getElementById('quote-form');
             const success = document.getElementById('form-success');
+            const errorBox = document.getElementById('form-error');
+            const submitBtn = document.getElementById('submitBtn');
 
-            // Collect form data
             const name = form.querySelector('#name').value.trim();
             const phone = form.querySelector('#phone').value.trim();
             const email = form.querySelector('#email').value.trim();
@@ -1199,23 +1209,48 @@
             const serviceText = form.querySelector('#service option:checked').textContent;
             const details = form.querySelector('#details').value.trim();
 
-            // Send to FormSubmit (email to liam@howhighscaffolding.com)
-            const formData = new FormData(form);
-            fetch(form.action, { method: 'POST', body: formData }).catch(() => {});
+            errorBox.classList.add('hidden');
 
-            // Also open WhatsApp
+            // A UK number has at least 10 digits; stops typos like "abc" reaching Liam
+            if (phone.replace(/\D/g, '').length < 10) {
+                errorBox.textContent = 'Please enter a phone number we can call you on (at least 10 digits).';
+                errorBox.classList.remove('hidden');
+                form.querySelector('#phone').focus();
+                return;
+            }
+
+            // Open WhatsApp straight away, inside the click, so browsers don't block it
             let msg = `Hi, I'd like a scaffolding quote please.\n\n`;
             msg += `Name: ${name}\n`;
             msg += `Phone: ${phone}\n`;
             if (email) msg += `Email: ${email}\n`;
             if (service) msg += `Service: ${serviceText}\n`;
             if (details) msg += `Details: ${details}\n`;
+            window.open(`https://wa.me/447542516952?text=${encodeURIComponent(msg)}`, '_blank');
 
-            const waURL = `https://wa.me/447542516952?text=${encodeURIComponent(msg)}`;
-            window.open(waURL, '_blank');
+            // Only show success when the email was really accepted
+            submitBtn.disabled = true;
+            let sent = false;
+            try {
+                const res = await fetch(form.action.replace('formsubmit.co/', 'formsubmit.co/ajax/'), {
+                    method: 'POST',
+                    headers: { 'Accept': 'application/json' },
+                    body: new FormData(form)
+                });
+                const data = await res.json();
+                sent = res.ok && String(data.success) === 'true';
+            } catch (err) {
+                sent = false;
+            }
+            submitBtn.disabled = false;
 
-            form.style.display = 'none';
-            success.classList.remove('hidden');
+            if (sent) {
+                form.style.display = 'none';
+                success.classList.remove('hidden');
+            } else {
+                errorBox.textContent = "We couldn't email your request. Please send the WhatsApp message that just opened, or call us on 07542 516952.";
+                errorBox.classList.remove('hidden');
+            }
         }
 
         // === FAQ ACCORDION ===
